@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-theme="light">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f5f5f7"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>𝕏 · 个人操作台 V6</title>
+<title>𝕏 · 个人操作台 V7 · Gist 云同步</title>
 <style>
 :root{color-scheme:light;--bg:#f5f5f7;--panel:#fff;--panel2:#fafafd;--ink:#1d1d1f;--muted:#86868b;--line:#e6e6eb;--soft:#f0f0f5;--accent:#007aff;--accent-soft:#eaf3ff;--good:#248a54;--good-soft:#e9f7ef;--warn:#c44438;--warn-soft:#fff0ed;--shadow:0 8px 28px rgba(20,20,30,.035);--radius:22px;--field:#f7f7f9}
 [data-theme="dark"]{color-scheme:dark;--bg:#08090b;--panel:#111214;--panel2:#17181b;--ink:#f5f5f7;--muted:#8e8e93;--line:#292a2f;--soft:#1b1c20;--accent:#0a84ff;--accent-soft:#102944;--good:#38c779;--good-soft:#10271b;--warn:#ff6961;--warn-soft:#321916;--shadow:0 8px 28px rgba(0,0,0,.14);--field:#191a1e}
@@ -53,9 +53,83 @@ body.rest-active .app{padding-bottom:40px}body.rest-active .sidebar{border-color
 .quick-card[data-size="small"]{min-height:128px;padding:12px}.quick-card[data-size="large"]{grid-column:span 2;min-height:188px;padding:20px}.quick-card[data-size="large"] .quick-count{font-size:32px}.quick-card[data-size="large"] .quick-sub{font-size:12px}.quick-card.is-hidden{display:none!important}
 .better-man-strip{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:15px 18px;border:1px solid color-mix(in srgb,#4d8cff 28%,var(--line));border-radius:20px;background:linear-gradient(112deg,color-mix(in srgb,#e5efff 92%,var(--panel)),color-mix(in srgb,#e4fbf0 60%,var(--panel)));box-shadow:var(--shadow)}[data-theme="dark"] .better-man-strip{background:linear-gradient(112deg,#14243b,#102a26)}.better-man-mark{width:39px;height:39px;flex:0 0 auto;display:grid;place-items:center;border-radius:13px;background:#1d1d1f;color:white;font-size:22px}.better-man-copy{flex:1;min-width:0}.better-man-kicker{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.15em;margin-bottom:3px}.better-man-copy strong{font-size:14px;font-weight:750;display:block;letter-spacing:-.025em}.better-man-copy p{color:var(--muted);font-size:11px;margin:4px 0 0}.better-man-refresh{width:35px;height:35px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font-size:18px}.goal-contract{font-size:10px;color:var(--warn);opacity:.9;letter-spacing:.01em;margin-top:7px}
 .chat-panel{border-color:color-mix(in srgb,#20b779 35%,var(--line))}.chat-compose{background:transparent}.composer-wrap{border:1.5px solid #22a06b!important;background:var(--panel)!important;box-shadow:0 0 0 3px color-mix(in srgb,#22a06b 11%,transparent)}.send-button{background:#168653!important}.message.user .message-bubble{background:#168653!important;color:#fff}.hint-btn.selected{background:color-mix(in srgb,#20b779 16%,var(--panel));color:#168653;border-color:#20a06b}
-.finance-hero{align-items:flex-end}.panel-card{border:1px solid var(--line);border-radius:22px;background:var(--panel);box-shadow:var(--shadow);padding:19px;margin-bottom:14px;min-width:0}.finance-settings{padding:15px 18px}.finance-settings-head,.panel-card-head{display:flex;align-items:center;justify-content:space-between;gap:14px}.finance-settings-head strong{font-size:13px}.finance-settings-head p,.panel-card-head p{font-size:11px;color:var(--muted);margin:4px 0 0}.finance-settings-grid{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}.finance-settings-grid.open{display:grid}.finance-settings-grid label,.ledger-form-grid label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--muted)}.finance-input-row{display:flex;align-items:center;gap:6px}.finance-input-row .control{min-width:0}.finance-input-row>span{font-weight:750;color:var(--ink)}.finance-settings-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.small-muted{font-size:10px;color:var(--muted)}.finance-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:0 0 14px}.finance-summary{border:1px solid var(--line);border-radius:21px;padding:18px 17px;background:var(--panel);min-width:0;overflow:hidden;position:relative;box-shadow:var(--shadow)}.finance-summary:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-60px;background:var(--summary-glow,#edf4ff);opacity:.95}.balance-summary{--summary-glow:#cce0ff}.budget-summary{--summary-glow:#c9f1dc}.income-summary{--summary-glow:#c4f0e0}.expense-summary{--summary-glow:#ffd9d9}[data-theme="dark"] .balance-summary{--summary-glow:#152c4d}[data-theme="dark"] .budget-summary,[data-theme="dark"] .income-summary{--summary-glow:#12382c}[data-theme="dark"] .expense-summary{--summary-glow:#3d2020}.finance-sum-label{position:relative;z-index:1;font-size:11px;font-weight:700}.finance-sum-label span{display:block;font-size:8px;letter-spacing:.12em;color:var(--muted);margin-top:3px}.finance-summary>strong{display:block;position:relative;z-index:1;font-size:clamp(22px,2.5vw,29px);letter-spacing:-.06em;margin:20px 0 7px;overflow-wrap:anywhere}.finance-summary p{position:relative;z-index:1;font-size:10px;color:var(--muted);margin:0;min-height:30px}.finance-spark{height:13px;display:flex;align-items:flex-end;gap:5px;margin-top:12px}.finance-spark i{display:block;width:9px;background:#2f80ed;border-radius:9px;opacity:.75}.finance-spark i:nth-child(1){height:35%}.finance-spark i:nth-child(2){height:55%}.finance-spark i:nth-child(3){height:43%}.finance-spark i:nth-child(4){height:78%}.finance-spark i:nth-child(5){height:60%}.finance-spark i:nth-child(6){height:90%}.finance-spark i:nth-child(7){height:70%}.finance-spark i:nth-child(8){height:100%}.finance-spark i:nth-child(9){height:83%}.finance-spark i:nth-child(10){height:95%}.budget-progress-track{height:6px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:13px}.budget-progress-track div{height:100%;width:0;background:linear-gradient(90deg,#4ca3ff,#22b879);border-radius:99px;transition:width .35s}.budget-progress-foot{display:flex;justify-content:space-between;gap:6px;color:var(--muted);font-size:9px;margin-top:5px}.finance-main-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.ledger-form-card,.finance-breakdown{margin-bottom:14px}.panel-card-head{align-items:flex-start;margin-bottom:15px}.panel-card-head h2{font-size:14px;margin:0}.finance-live-dot{font-size:9px;font-weight:800;letter-spacing:.1em;color:#138354;background:#e0f6e9;padding:5px 8px;border-radius:99px}.ledger-type-switch{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;padding:4px;border-radius:13px;background:var(--soft)}.ledger-type-switch button{border:0;background:transparent;color:var(--muted);border-radius:10px;padding:9px;font-size:12px;font-weight:700}.ledger-type-switch button.active.expense-mode{background:#ffe1df;color:#b3342b;box-shadow:0 2px 4px #0000000a}.ledger-type-switch button.active.income-mode{background:#d9f6e6;color:#126b43;box-shadow:0 2px 4px #0000000a}.quick-money-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.quick-money-row button{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:11px;padding:8px 12px;min-width:48px;font-weight:750;font-size:12px;transition:transform .15s,background .15s}.quick-money-row button:active{transform:scale(.93);background:var(--good-soft)}.ledger-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ledger-form-grid .control{width:100%}.ledger-amount{font-size:20px!important;font-weight:750}.ledger-form-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:15px}.finance-breakdown .panel-card-head{align-items:center}.month-select{max-width:145px;font-size:11px}.net-flow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 1px 15px}.net-flow span{font-size:11px;color:var(--muted)}.net-flow strong{display:block;font-size:25px;letter-spacing:-.05em;margin-top:4px}.net-donut{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#2bb978 0 0%,var(--soft) 0 100%);position:relative;flex:0 0 auto}.net-donut:after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--panel)}.net-donut span{position:relative;z-index:1;font-size:12px;font-weight:800}.category-breakdown{display:flex;flex-direction:column;gap:11px}.category-row{display:grid;grid-template-columns:68px minmax(20px,1fr) auto;gap:8px;align-items:center;font-size:10px}.category-name{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.category-track{height:7px;border-radius:99px;background:var(--soft);overflow:hidden}.category-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#72b3ff,#5c83ed)}.category-amount{font-variant-numeric:tabular-nums;font-weight:700}.transaction-tools{display:flex;gap:7px;min-width:250px}.transaction-tools .control{min-width:0}.transaction-list{display:flex;flex-direction:column;gap:2px}.transaction-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line)}.transaction-row:last-child{border-bottom:0}.transaction-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:var(--soft);font-size:16px}.transaction-copy{min-width:0}.transaction-copy strong{display:block;font-size:12px;overflow-wrap:anywhere}.transaction-copy small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.transaction-amount{font-size:13px;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}.transaction-amount.expense{color:#e65b51}.transaction-amount.income{color:#159965}.transaction-actions{display:flex;gap:4px}.transaction-actions button{border:0;background:transparent;border-radius:8px;padding:6px;color:var(--muted);font-size:11px}.transaction-actions button:hover{background:var(--soft);color:var(--ink)}.transaction-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}.journal-export-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border:1px solid var(--line);background:var(--panel);border-radius:17px;padding:12px 14px;margin-bottom:14px}.journal-export-toolbar>div{display:flex;flex:1;min-width:180px;flex-direction:column}.journal-export-toolbar strong{font-size:12px}.journal-export-toolbar small{font-size:10px;color:var(--muted)}.journal-export-toolbar .control{width:auto;min-width:112px;font-size:11px}.customize-body{padding:13px}.component-settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.component-setting-row{display:grid;grid-template-columns:auto 30px minmax(70px,1fr) 78px;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:9px}.component-setting-row label{font-size:11px;font-weight:650}.component-setting-row input[type=text]{width:30px;min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--field);color:var(--ink);text-align:center;padding:4px 0}.component-setting-row select{width:78px;font-size:10px;padding:5px;border-radius:8px}.customize-actions{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px}.intimate-method{display:grid;gap:13px;width:100%;max-width:540px;margin:22px 0 5px;text-align:left}.intimate-method>div>label{display:block;color:var(--muted);font-size:10px;margin-bottom:8px;letter-spacing:.08em}.intimate-duration-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.intimate-duration-row button{border:1px solid var(--line);border-radius:13px;min-height:42px;background:var(--panel);color:var(--ink);font-weight:750;transition:transform .15s,background .15s,border-color .15s}.intimate-duration-row button:active{transform:scale(.96);background:var(--accent-soft)}.private-intimate .tracker-time-list{max-width:540px;margin-left:auto;margin-right:auto}.transaction-empty{padding:35px 16px;text-align:center;color:var(--muted);font-size:12px}.ledger-mode-income #saveLedgerBtn{background:#159965;border-color:#159965}.goal-contract{line-height:1.4}.home-task-delete{border:0;background:transparent;color:var(--muted);font-size:18px;line-height:1;width:26px;height:26px;border-radius:8px;flex:0 0 auto}.home-task-delete:hover{color:var(--warn);background:var(--warn-soft)}.page-footer:after{content:"WEB · V6";color:var(--muted);font-size:9px;letter-spacing:.1em}.intimate-duration-row button.selected{background:var(--good-soft);border-color:var(--good);color:var(--good);transform:translateY(-1px)}.quick-card{transition:background .3s,border-color .25s,box-shadow .25s,transform .18s}
+.finance-hero{align-items:flex-end}.panel-card{border:1px solid var(--line);border-radius:22px;background:var(--panel);box-shadow:var(--shadow);padding:19px;margin-bottom:14px;min-width:0}.finance-settings{padding:15px 18px}.finance-settings-head,.panel-card-head{display:flex;align-items:center;justify-content:space-between;gap:14px}.finance-settings-head strong{font-size:13px}.finance-settings-head p,.panel-card-head p{font-size:11px;color:var(--muted);margin:4px 0 0}.finance-settings-grid{display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}.finance-settings-grid.open{display:grid}.finance-settings-grid label,.ledger-form-grid label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--muted)}.finance-input-row{display:flex;align-items:center;gap:6px}.finance-input-row .control{min-width:0}.finance-input-row>span{font-weight:750;color:var(--ink)}.finance-settings-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.small-muted{font-size:10px;color:var(--muted)}.finance-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:0 0 14px}.finance-summary{border:1px solid var(--line);border-radius:21px;padding:18px 17px;background:var(--panel);min-width:0;overflow:hidden;position:relative;box-shadow:var(--shadow)}.finance-summary:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-60px;background:var(--summary-glow,#edf4ff);opacity:.95}.balance-summary{--summary-glow:#cce0ff}.budget-summary{--summary-glow:#c9f1dc}.income-summary{--summary-glow:#c4f0e0}.expense-summary{--summary-glow:#ffd9d9}[data-theme="dark"] .balance-summary{--summary-glow:#152c4d}[data-theme="dark"] .budget-summary,[data-theme="dark"] .income-summary{--summary-glow:#12382c}[data-theme="dark"] .expense-summary{--summary-glow:#3d2020}.finance-sum-label{position:relative;z-index:1;font-size:11px;font-weight:700}.finance-sum-label span{display:block;font-size:8px;letter-spacing:.12em;color:var(--muted);margin-top:3px}.finance-summary>strong{display:block;position:relative;z-index:1;font-size:clamp(22px,2.5vw,29px);letter-spacing:-.06em;margin:20px 0 7px;overflow-wrap:anywhere}.finance-summary p{position:relative;z-index:1;font-size:10px;color:var(--muted);margin:0;min-height:30px}.finance-spark{height:13px;display:flex;align-items:flex-end;gap:5px;margin-top:12px}.finance-spark i{display:block;width:9px;background:#2f80ed;border-radius:9px;opacity:.75}.finance-spark i:nth-child(1){height:35%}.finance-spark i:nth-child(2){height:55%}.finance-spark i:nth-child(3){height:43%}.finance-spark i:nth-child(4){height:78%}.finance-spark i:nth-child(5){height:60%}.finance-spark i:nth-child(6){height:90%}.finance-spark i:nth-child(7){height:70%}.finance-spark i:nth-child(8){height:100%}.finance-spark i:nth-child(9){height:83%}.finance-spark i:nth-child(10){height:95%}.budget-progress-track{height:6px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:13px}.budget-progress-track div{height:100%;width:0;background:linear-gradient(90deg,#4ca3ff,#22b879);border-radius:99px;transition:width .35s}.budget-progress-foot{display:flex;justify-content:space-between;gap:6px;color:var(--muted);font-size:9px;margin-top:5px}.finance-main-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.ledger-form-card,.finance-breakdown{margin-bottom:14px}.panel-card-head{align-items:flex-start;margin-bottom:15px}.panel-card-head h2{font-size:14px;margin:0}.finance-live-dot{font-size:9px;font-weight:800;letter-spacing:.1em;color:#138354;background:#e0f6e9;padding:5px 8px;border-radius:99px}.ledger-type-switch{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px;padding:4px;border-radius:13px;background:var(--soft)}.ledger-type-switch button{border:0;background:transparent;color:var(--muted);border-radius:10px;padding:9px;font-size:12px;font-weight:700}.ledger-type-switch button.active.expense-mode{background:#ffe1df;color:#b3342b;box-shadow:0 2px 4px #0000000a}.ledger-type-switch button.active.income-mode{background:#d9f6e6;color:#126b43;box-shadow:0 2px 4px #0000000a}.quick-money-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.quick-money-row button{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:11px;padding:8px 12px;min-width:48px;font-weight:750;font-size:12px;transition:transform .15s,background .15s}.quick-money-row button:active{transform:scale(.93);background:var(--good-soft)}.ledger-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ledger-form-grid .control{width:100%}.ledger-amount{font-size:20px!important;font-weight:750}.ledger-form-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:15px}.finance-breakdown .panel-card-head{align-items:center}.month-select{max-width:145px;font-size:11px}.net-flow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 1px 15px}.net-flow span{font-size:11px;color:var(--muted)}.net-flow strong{display:block;font-size:25px;letter-spacing:-.05em;margin-top:4px}.net-donut{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#2bb978 0 0%,var(--soft) 0 100%);position:relative;flex:0 0 auto}.net-donut:after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--panel)}.net-donut span{position:relative;z-index:1;font-size:12px;font-weight:800}.category-breakdown{display:flex;flex-direction:column;gap:11px}.category-row{display:grid;grid-template-columns:68px minmax(20px,1fr) auto;gap:8px;align-items:center;font-size:10px}.category-name{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.category-track{height:7px;border-radius:99px;background:var(--soft);overflow:hidden}.category-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#72b3ff,#5c83ed)}.category-amount{font-variant-numeric:tabular-nums;font-weight:700}.transaction-tools{display:flex;gap:7px;min-width:250px}.transaction-tools .control{min-width:0}.transaction-list{display:flex;flex-direction:column;gap:2px}.transaction-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line)}.transaction-row:last-child{border-bottom:0}.transaction-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:var(--soft);font-size:16px}.transaction-copy{min-width:0}.transaction-copy strong{display:block;font-size:12px;overflow-wrap:anywhere}.transaction-copy small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.transaction-amount{font-size:13px;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}.transaction-amount.expense{color:#e65b51}.transaction-amount.income{color:#159965}.transaction-actions{display:flex;gap:4px}.transaction-actions button{border:0;background:transparent;border-radius:8px;padding:6px;color:var(--muted);font-size:11px}.transaction-actions button:hover{background:var(--soft);color:var(--ink)}.transaction-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}.journal-export-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border:1px solid var(--line);background:var(--panel);border-radius:17px;padding:12px 14px;margin-bottom:14px}.journal-export-toolbar>div{display:flex;flex:1;min-width:180px;flex-direction:column}.journal-export-toolbar strong{font-size:12px}.journal-export-toolbar small{font-size:10px;color:var(--muted)}.journal-export-toolbar .control{width:auto;min-width:112px;font-size:11px}.customize-body{padding:13px}.component-settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.component-setting-row{display:grid;grid-template-columns:auto 30px minmax(70px,1fr) 78px;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:9px}.component-setting-row label{font-size:11px;font-weight:650}.component-setting-row input[type=text]{width:30px;min-width:0;border:1px solid var(--line);border-radius:7px;background:var(--field);color:var(--ink);text-align:center;padding:4px 0}.component-setting-row select{width:78px;font-size:10px;padding:5px;border-radius:8px}.customize-actions{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px}.intimate-method{display:grid;gap:13px;width:100%;max-width:540px;margin:22px 0 5px;text-align:left}.intimate-method>div>label{display:block;color:var(--muted);font-size:10px;margin-bottom:8px;letter-spacing:.08em}.intimate-duration-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.intimate-duration-row button{border:1px solid var(--line);border-radius:13px;min-height:42px;background:var(--panel);color:var(--ink);font-weight:750;transition:transform .15s,background .15s,border-color .15s}.intimate-duration-row button:active{transform:scale(.96);background:var(--accent-soft)}.private-intimate .tracker-time-list{max-width:540px;margin-left:auto;margin-right:auto}.transaction-empty{padding:35px 16px;text-align:center;color:var(--muted);font-size:12px}.ledger-mode-income #saveLedgerBtn{background:#159965;border-color:#159965}.goal-contract{line-height:1.4}.home-task-delete{border:0;background:transparent;color:var(--muted);font-size:18px;line-height:1;width:26px;height:26px;border-radius:8px;flex:0 0 auto}.home-task-delete:hover{color:var(--warn);background:var(--warn-soft)}.page-footer:after{content:"WEB · V7";color:var(--muted);font-size:9px;letter-spacing:.1em}.intimate-duration-row button.selected{background:var(--good-soft);border-color:var(--good);color:var(--good);transform:translateY(-1px)}.quick-card{transition:background .3s,border-color .25s,box-shadow .25s,transform .18s}
 @media(max-width:1000px){.finance-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-settings-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.finance-main-grid{grid-template-columns:1fr}}
 @media(max-width:760px){.finance-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.finance-summary{padding:14px;border-radius:17px}.finance-summary>strong{font-size:22px;margin:14px 0 6px}.finance-main-grid{grid-template-columns:1fr;gap:0}.finance-settings-grid{grid-template-columns:1fr 1fr}.finance-settings-actions{grid-column:1/-1}.ledger-form-grid{grid-template-columns:1fr 1fr}.transaction-tools{min-width:0;width:100%}.transaction-panel .panel-card-head{flex-direction:column}.transaction-row{grid-template-columns:36px minmax(0,1fr) auto;gap:9px}.transaction-actions{grid-column:2/-1;justify-content:flex-end;margin-top:-5px}.transaction-icon{width:34px;height:34px}.transaction-amount{font-size:12px}.quick-card[data-size="large"]{grid-column:span 2}.component-settings{grid-template-columns:1fr}.component-setting-row{grid-template-columns:auto 30px minmax(70px,1fr) 78px}.journal-export-toolbar{align-items:stretch}.journal-export-toolbar .control{flex:1}.better-man-strip{padding:12px;border-radius:16px}.better-man-copy strong{font-size:13px}.better-man-copy p{font-size:10px}.goal-contract{font-size:9px}.mobile-nav{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+
+/* V7: editable module labels, compact settings, and redesigned off-duty trackers */
+#v7OpenSettings{white-space:nowrap}
+#view-settings .view-hero{padding-top:28px}
+.v7-settings-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:14px;align-items:start}
+.v7-panel{background:var(--panel);border:1px solid var(--line);border-radius:21px;padding:18px;min-width:0;box-shadow:var(--shadow)}
+.v7-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}
+.v7-panel-head h2{font-size:16px;letter-spacing:-.035em;margin:3px 0 5px}
+.v7-panel-head p{font-size:11px;color:var(--muted);margin:0;line-height:1.6}
+.v7-kicker{font-size:9px;font-weight:750;letter-spacing:.13em;color:var(--accent)}
+.v7-status-pill{display:inline-flex;align-items:center;white-space:nowrap;border:1px solid var(--line);padding:5px 9px;border-radius:99px;font-size:10px;color:var(--muted)}
+.v7-status-pill.connected{color:var(--good);border-color:color-mix(in srgb,var(--good) 30%,var(--line));background:var(--good-soft)}
+.v7-field{display:block;margin:12px 0}
+.v7-field>span{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:11px;font-weight:650;margin:0 0 6px}
+.v7-field small,.v7-autosync small{font-size:10px;color:var(--muted);font-weight:400}
+.v7-field input[readonly]{color:var(--muted);background:var(--soft)}
+.v7-sync-actions,.v7-backup-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.v7-sync-actions .btn,.v7-backup-actions .btn{min-height:35px}
+.v7-autosync{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);margin-top:5px}
+.v7-autosync input{margin:3px 0 0;width:16px;height:16px;accent-color:var(--accent)}
+.v7-autosync strong,.v7-autosync small{display:block}.v7-autosync strong{font-size:12px}.v7-autosync small{margin-top:3px;line-height:1.5}
+.v7-sync-status{margin-top:12px;border-radius:12px;border:1px solid var(--line);background:var(--soft);padding:11px 12px;color:var(--muted);font-size:11px;line-height:1.65;overflow-wrap:anywhere}
+.v7-sync-status.success{color:var(--good)}.v7-sync-status.error{color:var(--warn)}.v7-sync-status.warning{color:var(--ink)}
+.v7-help{margin-top:13px;font-size:11px;color:var(--muted);line-height:1.7}.v7-help summary{cursor:pointer;color:var(--ink);font-weight:650}.v7-help p{margin:9px 0 0}
+.v7-name-groups{display:grid;gap:14px}.v7-name-groups h3{font-size:11px;margin:0 0 8px;color:var(--muted)}
+.v7-name-list{display:grid;gap:7px}
+.v7-name-row{display:grid;grid-template-columns:minmax(92px,.8fr) minmax(0,1.2fr);align-items:center;gap:8px}
+.v7-name-row label{font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.v7-name-row input{width:100%;min-width:0;padding:8px 9px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);font-size:12px}
+.v7-reset-box{margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}.v7-reset-box strong{font-size:12px}.v7-reset-box p{font-size:11px;color:var(--muted);line-height:1.65;margin:6px 0 11px}
+.v7-rule{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}.v7-rule:last-child{border-bottom:0}.v7-rule>b{display:grid;place-items:center;width:27px;height:27px;flex:0 0 auto;border-radius:9px;background:var(--soft);color:var(--muted);font-size:10px}.v7-rule strong{font-size:11px}.v7-rule p{font-size:10px;color:var(--muted);margin:4px 0 0;line-height:1.55}
+/* component editor gets real text fields instead of a fixed, uneditable label */
+.component-setting-row{grid-template-columns:22px 34px minmax(90px,1fr) 78px;gap:8px}
+.component-setting-row .v7-component-label{width:100%;min-width:0;padding:7px 8px;border:1px solid var(--line);border-radius:9px;background:var(--field);color:var(--ink);font-size:11px}
+/* weekend/private panel */
+.rest-title-grid{align-items:stretch}
+.stocking-display{min-width:220px}
+.stocking-swatches{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-bottom:15px}
+.stocking-swatches i{width:auto!important;height:15px!important;display:block;border-radius:99px}
+.v7-intimate-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:13px 0}
+.v7-intimate-stat{padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--panel2);min-width:0}
+.v7-intimate-stat span{display:block;font-size:10px;color:var(--muted);margin-bottom:5px}.v7-intimate-stat strong{font-size:21px;letter-spacing:-.04em;display:block;overflow-wrap:anywhere}.v7-intimate-stat small{font-size:10px;color:var(--muted)}
+.v7-kind-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.v7-kind-card{border:1px solid var(--line);border-radius:16px;padding:13px;min-width:0;background:var(--panel2)}
+.v7-kind-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.v7-kind-letter{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:800}
+.v7-kind-count{font-size:12px;font-weight:700}.v7-kind-count small{font-weight:400;color:var(--muted);font-size:10px}
+.v7-kind-actions{display:flex;gap:6px;flex-wrap:wrap}.v7-kind-actions .btn{flex:1;min-width:92px}
+.v7-duration-panel{margin-top:10px;padding:10px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.v7-duration-panel[hidden]{display:none!important}.v7-duration-panel>p{font-size:10px;color:var(--muted);margin:0 0 8px}
+.v7-duration-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.v7-duration-options button{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--ink);font-size:11px;min-height:34px}
+.v7-duration-options button:hover{border-color:var(--accent);color:var(--accent)}
+.v7-duration-panel .v7-duration-skip{margin-top:7px;width:100%;background:transparent;border:0;color:var(--muted);font-size:10px}
+.v7-duration-stats{padding:13px;border-radius:15px;border:1px solid var(--line);margin-top:14px;background:var(--panel)}
+.v7-duration-stats h3{font-size:12px;margin:0 0 10px}.v7-duration-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.v7-duration-stat-grid>div{padding:10px;border-radius:12px;background:var(--soft);min-width:0}.v7-duration-stat-grid span{display:block;font-size:10px;color:var(--muted)}.v7-duration-stat-grid strong{font-size:17px;display:block;margin-top:4px;overflow-wrap:anywhere}
+.v7-duration-log{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.v7-duration-chip{font-size:10px;border:1px solid var(--line);border-radius:99px;padding:5px 8px;color:var(--muted)}
+#undoIntimateBtn,#undoIntimateDurationBtn{margin-top:10px}
+@media(max-width:1000px){.v7-settings-grid{grid-template-columns:1fr}.component-setting-row{grid-template-columns:20px 32px minmax(80px,1fr) 76px}}
+@media(max-width:600px){.v7-panel{padding:14px;border-radius:17px}.v7-settings-grid{gap:10px}.v7-panel-head{flex-direction:column;align-items:flex-start}.v7-name-row{grid-template-columns:88px minmax(0,1fr)}.v7-sync-actions .btn,.v7-backup-actions .btn{flex:1}.v7-intimate-summary{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.v7-intimate-stat{padding:9px}.v7-intimate-stat strong{font-size:18px}.v7-kind-grid{grid-template-columns:1fr}.v7-duration-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.v7-duration-stat-grid strong{font-size:15px}.stocking-display{min-width:0}.rest-title-grid{grid-template-columns:1fr}.stocking-swatches{margin-top:14px}}
+/* V7 layout refinement */
+.rest-scene{max-width:1220px;min-height:calc(100vh - 150px);margin:0 auto;align-items:stretch;justify-content:flex-start;text-align:left;padding:28px clamp(16px,2.4vw,32px) 30px}
+.rest-title-grid{width:100%;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:16px;text-align:left}
+.rest-title-grid>div:first-child{align-self:center}
+.stocking-display{width:100%;min-width:0;max-width:none}
+.private-trackers{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch;text-align:left}
+.private-trackers>section{width:100%;min-width:0;margin:0;max-width:none}
+.private-intimate .tracker-time-list{max-width:none}
+.v7-duration-stats{margin-top:14px}
+.component-setting-row{grid-template-columns:22px 34px minmax(90px,1fr) 78px;gap:7px}
+@media(max-width:1000px){.rest-title-grid{grid-template-columns:minmax(0,1fr) minmax(240px,.8fr)}.private-trackers{grid-template-columns:1fr}}
+@media(max-width:600px){.rest-scene{padding:18px 12px 24px}.rest-title-grid{grid-template-columns:1fr}.private-trackers{grid-template-columns:1fr}.component-setting-row{grid-template-columns:20px 28px minmax(0,1fr) 65px;gap:5px;padding:7px}.component-setting-row .v7-component-label{font-size:10px;padding:6px 5px}.stocking-swatches{grid-template-columns:repeat(6,minmax(0,1fr))}}
 
 </style>
 </head>
@@ -66,12 +140,12 @@ body.rest-active .app{padding-bottom:40px}body.rest-active .sidebar{border-color
   <div class="side-label">WORKSPACE</div>
   <nav class="side-nav" aria-label="侧边主导航"><button class="active" data-view="today"><span>⌂</span>今天</button><button data-view="tasks"><span>☷</span>全部待办</button><button data-view="finance"><span>￥</span>财务状态</button><button data-view="journal"><span>▤</span>个人记录</button><button data-view="insights"><span>⌁</span>趋势与复盘</button><button id="sidebarRestBtn"><span>☼</span>今日不上班</button></nav>
   <div class="side-divider"></div><div class="side-done-head"><span>今日已办成</span><b id="sidebarDoneCount">0</b></div><div id="sidebarDoneList" class="sidebar-done-list"><div class="side-empty">做完的事会留在这里。</div></div>
-  <div class="side-bottom"><div class="side-version">WEB · V6</div><div id="themeSwitch" class="theme-switch" title="切换浅色 / 深色模式"><span id="themeLabel">浅色外观</span><button id="themeToggle" aria-label="切换深浅模式">☾</button></div></div>
+  <div class="side-bottom"><div class="side-version">WEB · V7</div><div id="themeSwitch" class="theme-switch" title="切换浅色 / 深色模式"><span id="themeLabel">浅色外观</span><button id="themeToggle" aria-label="切换深浅模式">☾</button></div></div>
 </aside>
   <header class="topbar">
     <div class="brand"><div class="brand-icon">𝕏</div><div><div class="brand-name">PERSONAL OS</div><div class="brand-sub">个人成长与工作系统</div></div></div>
     <nav class="nav" aria-label="主导航"><button class="active" data-view="today">今天</button><button data-view="tasks">待办</button><button data-view="finance">财务</button><button data-view="journal">记录</button><button data-view="insights">趋势</button></nav>
-    <div class="top-actions"><button class="btn" id="exportTxt">导出 TXT</button><button class="btn" id="exportJson">备份 JSON</button><button class="btn ghost" id="importBtn" title="导入 JSON 备份">导入 ↥</button><input id="importFile" class="hidden" type="file" accept="application/json,.json"></div>
+    <div class="top-actions"><button class="btn soft" id="v7OpenSettings" type="button">☁ 云同步 / 设置</button><button class="btn" id="exportTxt">导出 TXT</button><button class="btn" id="exportJson">备份 JSON</button><button class="btn ghost" id="importBtn" title="导入 JSON 备份">导入 ↥</button><input id="importFile" class="hidden" type="file" accept="application/json,.json"></div>
   </header>
 
   <main id="view-today" class="view active">
@@ -179,6 +253,34 @@ body.rest-active .app{padding-bottom:40px}body.rest-active .sidebar{border-color
   <div class="rest-bottom"><span>今天不追进度，今天把生活过回来。</span><button class="btn ghost" id="restWriteBtn">随手记一点生活 ↗</button></div>
 </section>
 </main>
+
+  <main id="view-settings" class="view">
+    <section class="view-hero"><div><div class="eyebrow">YOUR DATA, YOUR RULES</div><h1>设置与云同步。</h1><p>把数据带走、加密保存，再在另一台设备恢复。不把令牌写进网页源码。</p></div><button class="btn" id="v7BackHome">← 回到今天</button></section>
+    <div class="v7-settings-grid">
+      <section class="v7-panel v7-sync-panel">
+        <div class="v7-panel-head"><div><span class="v7-kicker">GITHUB GIST</span><h2>在线保存与同步</h2><p>指定的 Gist：<a id="v7GistLink" href="https://gist.github.com/yidongdebingshan-CN/0cc862936da6a2e02e852f7a99122491" target="_blank" rel="noopener noreferrer">打开你的 Gist ↗</a></p></div><span class="v7-status-pill" id="v7ConnectionPill">尚未连接</span></div>
+        <label class="v7-field"><span>Gist ID</span><input class="control" id="v7GistId" value="0cc862936da6a2e02e852f7a99122491" readonly></label>
+        <label class="v7-field"><span>GitHub Token <small>仅存于当前浏览器标签页会话</small></span><input class="control" id="v7TokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="粘贴 fine-grained token；不要发给 ChatGPT"></label>
+        <label class="v7-field"><span>数据加密口令 <small>建议使用独立的长口令；不上传也不长期保存</small></span><input class="control" id="v7Passphrase" type="password" autocomplete="new-password" placeholder="至少 8 位，跨设备必须使用同一个口令"></label>
+        <div class="v7-sync-actions"><button class="btn" id="v7TestConnection" type="button">检测 Gist 连接</button><button class="btn primary" id="v7PushNow" type="button">加密并同步到云端</button><button class="btn" id="v7PullNow" type="button">从云端恢复</button></div>
+        <label class="v7-autosync"><input type="checkbox" id="v7AutoSync"><span><strong>开启自动同步</strong><small>本地变更后稍作等待再上传。首次使用先手动同步或恢复。</small></span></label>
+        <div class="v7-sync-status" id="v7SyncStatus" role="status" aria-live="polite">尚未连接。先在本页粘贴 Token 和加密口令，再检测连接。</div>
+        <details class="v7-help"><summary>Token 应该怎样设置？</summary><p>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens。只需授予 Gists: Read and write。不要把 Token 发到聊天里，也不要放进 HTML 文件。</p><p>「检测连接」只检查读取权限；首次同步时才会验证写入权限。数据先用浏览器内的 AES-GCM 加密，再上传到 Gist。加密口令忘记后无法恢复云端数据。</p></details>
+      </section>
+      <section class="v7-panel">
+        <div class="v7-panel-head"><div><span class="v7-kicker">CUSTOM WORKSPACE</span><h2>模块与组件命名</h2><p>这里修改名称后，导航、页面标题或首页卡片会一起更新。</p></div></div>
+        <div class="v7-name-groups"><div><h3>页面模块</h3><div id="v7ModuleNames" class="v7-name-list"></div></div><div><h3>首页组件</h3><div id="v7ComponentNames" class="v7-name-list"></div></div></div>
+        <div class="v7-sync-actions"><button class="btn" id="v7ResetNames" type="button">恢复默认名称</button><button class="btn" id="v7ResetComponents" type="button">恢复默认卡片设置</button></div>
+      </section>
+      <section class="v7-panel">
+        <div class="v7-panel-head"><div><span class="v7-kicker">BACKUP & RESTORE</span><h2>一键导出 / 导入</h2><p>完整备份包含日常记录、待办、财务、组件和模块名称。</p></div></div>
+        <div class="v7-backup-actions"><button class="btn primary" id="v7ExportAll" type="button">↓ 一键导出全部 JSON</button><button class="btn" id="v7ImportAll" type="button">↑ 一键导入 / 恢复</button><input class="hidden" id="v7ImportFile" type="file" accept="application/json,.json"></div>
+        <div class="v7-reset-box"><strong>重置本机数据</strong><p>会先触发一份完整 JSON 备份，再清空本机的日常记录、待办和账单；页面名称与组件布局保留，云端内容不会被删除。</p><button class="btn danger" id="v7ResetData" type="button">备份并重置本机记录</button></div>
+      </section>
+      <section class="v7-panel v7-explain-panel"><div class="v7-panel-head"><div><span class="v7-kicker">SYNC RULES</span><h2>同步规则</h2></div></div><div class="v7-rule"><b>01</b><div><strong>先加密，再上传</strong><p>记录文本、财务数据、习惯与私密周末记录都在加密范围内。</p></div></div><div class="v7-rule"><b>02</b><div><strong>冲突时暂停，不静默覆盖</strong><p>如果云端和本机都在上次同步后发生变化，会要求你主动选择恢复还是覆盖。</p></div></div><div class="v7-rule"><b>03</b><div><strong>跨设备要用相同口令</strong><p>在另一台设备打开同一 V7 文件，输入 Token 和同一个加密口令，再点击「从云端恢复」。</p></div></div><div class="v7-rule"><b>04</b><div><strong>Gist 并不是私人保险箱</strong><p>Secret Gist 仅是不公开列出；任何拿到链接的人都可能访问。因此只上传加密后的密文。</p></div></div></section>
+    </div>
+    <footer class="page-footer"><span id="v7LocalStatus">本地自动保存仍然生效。</span><span>云同步由你控制；Token 与加密口令不会写入导出的 HTML 源码。</span></footer>
+  </main>
 </div>
 
 <nav class="mobile-nav" aria-label="底部导航"><button class="active" data-view="today"><span>⌂</span>今天</button><button data-view="tasks"><span>☷</span>待办</button><button data-view="finance"><span>￥</span>财务</button><button data-view="journal"><span>▤</span>记录</button><button data-view="insights"><span>⌁</span>趋势</button></nav>
@@ -306,7 +408,7 @@ function stockingFor(date=currentDate){return stockColors[((dayIndex(date)%4)+4)
 function renderAlmanac(){const i=((dayIndex(currentDate)%yiDeck.length)+yiDeck.length)%yiDeck.length;$('#almanacYi').textContent=yiDeck[i][0]+' · '+yiDeck[(i+2)%yiDeck.length][1];$('#almanacJi').textContent=jiDeck[i][0]+' · '+jiDeck[(i+3)%jiDeck.length][1]}
 function renderHomeTasks(){const host=$('#homeTaskList');if(!host)return;host.innerHTML='';const list=todos.filter(t=>!t.done&&t.dueDate===currentDate).slice().sort((a,b)=>(a.priority==='high'?-1:0)-(b.priority==='high'?-1:0)).slice(0,4);if(!list.length){const e=document.createElement('div');e.className='home-task-empty';e.textContent='把工作记在随手记里，点「梳理工作」就会出现在这里。';host.append(e);return}list.forEach(t=>{const row=document.createElement('div');row.className='home-task-row';const cb=document.createElement('button');cb.className='home-task-check';cb.setAttribute('aria-label','标记完成');cb.textContent='';cb.addEventListener('click',()=>{const target=todos.find(x=>x.id===t.id);if(!target)return;target.done=true;target.doneAt=Date.now();persistTodos();renderTasks();renderHomeTasks();renderSidebarDone();toast('漂亮，已办成 ✓')});const title=document.createElement('div');title.className='home-task-title';title.textContent=t.title;title.title=t.title;const meta=document.createElement('span');meta.className='home-task-meta';meta.textContent=t.priority==='high'?'高优先级':(t.area||'工作');row.append(cb,title,meta);host.append(row)})}
 function renderSidebarDone(){const host=$('#sidebarDoneList');if(!host)return;const list=todos.filter(t=>t.done&&((t.doneAt&&new Date(t.doneAt).toISOString().slice(0,10)===currentDate)||t.dueDate===currentDate)).sort((a,b)=>(b.doneAt||b.createdAt||0)-(a.doneAt||a.createdAt||0)).slice(0,8);$('#sidebarDoneCount').textContent=list.length;host.innerHTML='';if(!list.length){const e=document.createElement('div');e.className='side-empty';e.textContent='做完的事会留在这里。';host.append(e);return}list.forEach(t=>{const row=document.createElement('div');row.className='side-done-item';const icon=document.createElement('i');icon.textContent='✓';const text=document.createElement('span');text.textContent=t.title;row.append(icon,text);host.append(row)})}
-function updateModeControls(){const mode=dayMode(currentDate);document.body.classList.toggle('rest-active',activeView==='rest');$('#dayOffBtn').textContent=mode==='rest'?'☼ 正在休息':'☁ 今天不上班';const side=$('#sidebarRestBtn');if(side)side.classList.toggle('active',activeView==='rest');$$('.side-nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===activeView));const c=stockingFor(currentDate);const scene=$('#restScene');if(scene){scene.dataset.sock=c.key;$('#stockingTitle').textContent='今日颜色 · '+c.name;$('#stockingSub').textContent='';$('#restDate').textContent=dateText(currentDate).toUpperCase();$('#restYi').textContent='慢下来，吃点好的';$('#restJi').textContent='带着工作焦虑过周末'}const d=ensureDay();$('#intimateCount').textContent=(d.intimateEvents||[]).length;$('#alcoholMl').textContent=Math.max(0,n(d.alcoholMl)).toLocaleString('zh-CN');const times=$('#intimateTimeList');times.innerHTML='';const ev=(d.intimateEvents||[]).slice(-6).reverse();if(!ev.length)times.textContent='还没有记录';else ev.forEach(e=>{const chip=document.createElement('span');chip.className='tracker-time-chip';chip.textContent=(e.kind?((e.kind==='oral'?'口':'穴')+' · '+(e.duration||0)+'min · '):'')+(e.time||'已记录');times.append(chip)});const ago=dayIndex(currentDate);document.body.dataset.stocking=c.key}
+function updateModeControls(){const mode=dayMode(currentDate);document.body.classList.toggle('rest-active',activeView==='rest');$('#dayOffBtn').textContent=mode==='rest'?'☼ 正在休息':'☁ 今天不上班';const side=$('#sidebarRestBtn');if(side)side.classList.toggle('active',activeView==='rest');$$('.side-nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===activeView));const c=stockingFor(currentDate);const scene=$('#restScene');if(scene){scene.dataset.sock=c.key;$('#stockingTitle').textContent='今日袜子颜色 · '+c.name;$('#stockingSub').textContent='';$('#restDate').textContent=dateText(currentDate).toUpperCase();$('#restYi').textContent='慢下来，吃点好的';$('#restJi').textContent='带着工作焦虑过周末'}const d=ensureDay();$('#intimateCount').textContent=(d.intimateEvents||[]).length;$('#alcoholMl').textContent=Math.max(0,n(d.alcoholMl)).toLocaleString('zh-CN');const times=$('#intimateTimeList');times.innerHTML='';const ev=(d.intimateEvents||[]).slice(-6).reverse();if(!ev.length)times.textContent='还没有记录';else ev.forEach(e=>{const chip=document.createElement('span');chip.className='tracker-time-chip';chip.textContent=(e.kind?((e.kind==='oral'?'口':'穴')+' · '+(e.duration||0)+'min · '):'')+(e.time||'已记录');times.append(chip)});const ago=dayIndex(currentDate);document.body.dataset.stocking=c.key}
 const renderTodayV4=renderToday;
 renderToday=function(){renderTodayV4();renderAlmanac();renderHomeTasks();renderSidebarDone();updateModeControls();const done=document.body.classList.contains('complete-mode');$('#completionBanner').hidden=!done;};
 const switchViewV4=switchView;
@@ -461,6 +563,256 @@ $('#ledgerDate').value=currentDate;$('#financeMonthSelect').value=monthKey(curre
 $('#currencyInput').addEventListener('change',()=>{const sym=currencySymbols[$('#currencyInput').value]||'R';$('#currencyLabelBudget').textContent=sym;$('#ledgerCurrencySymbol').textContent=sym});
 renderToday();renderFinance();applyUIPrefs();renderBetterMan();
 
+
+// ==================== V7: Gist sync, editable names, separated private counters, full backup ====================
+const V7_GIST_ID='0cc862936da6a2e02e852f7a99122491';
+const V7_GIST_FILE='data.json';
+const V7_TOKEN_SESSION='qb_v7_github_token';
+const V7_LAST_REV_SESSION='qb_v7_last_gist_revision';
+const V7_LAST_FINGERPRINT_SESSION='qb_v7_last_fingerprint';
+const V7_MODULE_KEY='quietly-better-module-names-v7';
+const v7SessionMemory={};
+function v7SessionGet(key){try{return sessionStorage.getItem(key)||''}catch(e){return v7SessionMemory[key]||''}}
+function v7SessionSet(key,value){try{sessionStorage.setItem(key,String(value))}catch(e){v7SessionMemory[key]=String(value)}}
+function v7SessionRemove(key){try{sessionStorage.removeItem(key)}catch(e){delete v7SessionMemory[key]}}
+let v7AutoSyncTimer=null, v7SyncBusy=false, v7SuppressAutosync=false;
+let v7LastKnownRevision=v7SessionGet(V7_LAST_REV_SESSION);
+let v7LastSyncedFingerprint=v7SessionGet(V7_LAST_FINGERPRINT_SESSION);
+const v7ModuleDefaults={today:'今天',tasks:'全部待办',finance:'财务状态',journal:'个人记录',insights:'趋势与复盘',rest:'今天不上班',intimate:'亲密记录',alcohol:'饮酒记录',intimateStats:'亲密时长统计'};
+let v7ModuleNames={...v7ModuleDefaults};
+try{v7ModuleNames={...v7ModuleDefaults,...JSON.parse(getStored(V7_MODULE_KEY)||'{}')}}catch(e){}
+const v7CardLabels={focus:'专注',exercise:'薄肌',reading:'阅读',water:'喝大水',sleep:'大睡',smoke:'吸烟'};
+
+// Expand today's color rotation without changing earlier records.
+stockColors.push({key:'purple',name:'紫色',value:'#8266b5'},{key:'brown',name:'棕色',value:'#80583f'});
+stockingFor=function(date=currentDate){const len=stockColors.length;return stockColors[((dayIndex(date)%len)+len)%len]};
+
+function v7Escape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function v7SetStatus(message,kind=''){const el=$('#v7SyncStatus');if(!el)return;el.textContent=message;el.classList.remove('success','error','warning');if(kind)el.classList.add(kind);const pill=$('#v7ConnectionPill');if(pill){pill.classList.toggle('connected',kind==='success');if(kind==='success')pill.textContent='已连接';else if(kind==='error')pill.textContent='连接异常';else if(kind==='warning')pill.textContent='需要处理';else pill.textContent='待连接'}}
+function v7PersistModuleNames(){setStored(V7_MODULE_KEY,JSON.stringify(v7ModuleNames))}
+function v7PersistAllPrefs(){persistUIPrefs();v7PersistModuleNames()}
+function v7UpdateNavText(button,label){if(!button)return;const icon=button.querySelector('span');button.textContent='';if(icon){button.append(icon,document.createTextNode(' '+label))}else button.textContent=label}
+function applyV7ModuleNames(){
+  const pages=['today','tasks','finance','journal','insights'];
+  pages.forEach(k=>{
+    const label=v7ModuleNames[k]||v7ModuleDefaults[k];
+    $$(`.side-nav [data-view="${k}"]`).forEach(b=>v7UpdateNavText(b,label));
+    $$('.nav [data-view]').filter(b=>b.dataset.view===k).forEach(b=>{b.textContent=label});
+    $$('.mobile-nav [data-view]').filter(b=>b.dataset.view===k).forEach(b=>v7UpdateNavText(b,label));
+  });
+  const restLabel=v7ModuleNames.rest||v7ModuleDefaults.rest;
+  const restButton=$('#sidebarRestBtn');if(restButton)v7UpdateNavText(restButton,restLabel);
+  const headingMap={tasks:'#view-tasks .view-hero h1',finance:'#view-finance .view-hero h1',journal:'#view-journal .view-hero h1',insights:'#view-insights .view-hero h1',rest:'#view-rest .rest-title-grid h1'};
+  Object.entries(headingMap).forEach(([k,sel])=>{const el=$(sel);if(el)el.textContent=v7ModuleNames[k]||v7ModuleDefaults[k]});
+  const intTitle=$('#v7IntimateTitle');if(intTitle)intTitle.textContent=v7ModuleNames.intimate||v7ModuleDefaults.intimate;
+  const alcTitle=$('#v7AlcoholTitle');if(alcTitle)alcTitle.textContent=v7ModuleNames.alcohol||v7ModuleDefaults.alcohol;
+  const statsTitle=$('#v7IntimateStatsTitle');if(statsTitle)statsTitle.textContent=v7ModuleNames.intimateStats||v7ModuleDefaults.intimateStats;
+  if($('#v7LocalStatus'))$('#v7LocalStatus').textContent=storageAvailable?'本机记录仍会自动保存；云同步状态请看上方。':'当前浏览器限制了本地保存，请及时导出备份。';
+}
+function v7RenderNameSettings(){
+  const modHost=$('#v7ModuleNames'),cardHost=$('#v7ComponentNames');if(!modHost||!cardHost)return;modHost.innerHTML='';cardHost.innerHTML='';
+  Object.entries(v7ModuleDefaults).forEach(([key,def])=>{
+    const row=document.createElement('div');row.className='v7-name-row';const label=document.createElement('label');label.textContent=def;label.htmlFor='v7mod-'+key;const input=document.createElement('input');input.id='v7mod-'+key;input.maxLength=32;input.value=v7ModuleNames[key]||def;input.setAttribute('aria-label',`修改页面模块名称：${def}`);input.addEventListener('change',()=>{v7ModuleNames[key]=input.value.trim().slice(0,32)||def;input.value=v7ModuleNames[key];v7PersistModuleNames();v7RenderNameSettings();renderComponentSettings();applyV7ModuleNames();v7ScheduleAutosync();toast('模块名称已更新')});row.append(label,input);modHost.append(row);
+  });
+  Object.entries(defaultUIPrefs).forEach(([key,def])=>{
+    const row=document.createElement('div');row.className='v7-name-row';const label=document.createElement('label');label.textContent=def.label||v7CardLabels[key]||key;label.htmlFor='v7card-'+key;const input=document.createElement('input');input.id='v7card-'+key;input.maxLength=24;input.value=(uiPrefs[key]&&uiPrefs[key].label)||v7CardLabels[key]||key;input.setAttribute('aria-label',`修改首页组件名称：${v7CardLabels[key]||key}`);input.addEventListener('change',()=>{uiPrefs[key].label=input.value.trim().slice(0,24)||(v7CardLabels[key]||key);input.value=uiPrefs[key].label;persistUIPrefs();applyUIPrefs();v7ScheduleAutosync();toast('首页组件名称已更新')});row.append(label,input);cardHost.append(row);
+  });
+}
+const v7OriginalRenderComponentSettings=renderComponentSettings;
+renderComponentSettings=function(){
+  const host=$('#componentSettings');if(!host){v7OriginalRenderComponentSettings();return}host.innerHTML='';
+  Object.keys(defaultUIPrefs).forEach(k=>{
+    const p=uiPrefs[k]||(uiPrefs[k]={...defaultUIPrefs[k]});if(!p.label)p.label=v7CardLabels[k]||k;
+    const row=document.createElement('div');row.className='component-setting-row';
+    const vis=document.createElement('input');vis.type='checkbox';vis.checked=p.visible;vis.setAttribute('aria-label',p.label+'显示');vis.title='显示/隐藏组件';vis.addEventListener('change',()=>{uiPrefs[k].visible=vis.checked;persistUIPrefs();applyUIPrefs();v7ScheduleAutosync()});
+    const ico=document.createElement('input');ico.type='text';ico.maxLength=4;ico.value=p.icon;ico.title='自定义图标';ico.setAttribute('aria-label',p.label+'图标');ico.addEventListener('change',()=>{uiPrefs[k].icon=ico.value.trim()||defaultUIPrefs[k].icon;ico.value=uiPrefs[k].icon;persistUIPrefs();applyUIPrefs();v7ScheduleAutosync()});
+    const name=document.createElement('input');name.type='text';name.className='v7-component-label';name.maxLength=24;name.value=p.label;name.title='此处可以修改组件显示文字';name.setAttribute('aria-label',p.label+'名称');name.addEventListener('change',()=>{uiPrefs[k].label=name.value.trim().slice(0,24)||v7CardLabels[k]||k;name.value=uiPrefs[k].label;persistUIPrefs();applyUIPrefs();v7RenderNameSettings();renderComponentSettings();v7ScheduleAutosync();toast('组件文字已更新')});
+    const size=document.createElement('select');size.setAttribute('aria-label',p.label+'大小');['small','medium','large'].forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=({small:'小号',medium:'中号',large:'大号'})[v];size.append(o)});size.value=p.size;size.addEventListener('change',()=>{uiPrefs[k].size=size.value;persistUIPrefs();applyUIPrefs();v7ScheduleAutosync()});
+    row.append(vis,ico,name,size);host.append(row);
+  });
+};
+const v7OriginalApplyUIPrefs=applyUIPrefs;
+applyUIPrefs=function(){v7OriginalApplyUIPrefs();Object.keys(defaultUIPrefs).forEach(k=>{const card=$('#card-'+k);if(!card)return;const label=card.querySelector('.quick-label');if(label)label.textContent=(uiPrefs[k]&&uiPrefs[k].label)||v7CardLabels[k]||k});};
+
+// Replace the old intimate tracker with a count-first K/X flow and a separate duration ledger.
+const v7IntimateSection=$('.private-intimate');
+if(v7IntimateSection){
+ v7IntimateSection.innerHTML=`
+ <div class="tracker-kicker">PRIVATE LOG · 01</div><h2 id="v7IntimateTitle">${v7Escape(v7ModuleNames.intimate||v7ModuleDefaults.intimate)}</h2><p>次数和时长分开保存。点 K 或 X 只计一次；进到下一层后，再单独选择时长。</p>
+ <div class="v7-intimate-summary"><div class="v7-intimate-stat"><span>总次数</span><strong id="intimateCount">0</strong><small>K + X</small></div><div class="v7-intimate-stat"><span>K 次数</span><strong id="v7KCount">0</strong><small>K 记录</small></div><div class="v7-intimate-stat"><span>X 次数</span><strong id="v7XCount">0</strong><small>X 记录</small></div></div>
+ <div class="v7-kind-grid">
+  <article class="v7-kind-card"><div class="v7-kind-head"><span class="v7-kind-letter">K</span><span class="v7-kind-count"><b id="v7KRecent">0</b> <small>次</small></span></div><div class="v7-kind-actions"><button class="btn primary" type="button" data-intimate-count="oral">＋ 记一次 K</button></div><div class="v7-duration-panel" id="v7KDurationPanel" hidden><p>已独立进入 K 时长记录，不会再增加次数。</p><div class="v7-duration-options"><button type="button" data-intimate-duration="oral" data-duration="10">10 分钟</button><button type="button" data-intimate-duration="oral" data-duration="20">20 分钟</button><button type="button" data-intimate-duration="oral" data-duration="30">30 分钟</button></div><button class="v7-duration-skip" type="button" data-close-duration="oral">先不记录时长</button></div></article>
+  <article class="v7-kind-card"><div class="v7-kind-head"><span class="v7-kind-letter">X</span><span class="v7-kind-count"><b id="v7XRecent">0</b> <small>次</small></span></div><div class="v7-kind-actions"><button class="btn primary" type="button" data-intimate-count="vaginal">＋ 记一次 X</button></div><div class="v7-duration-panel" id="v7XDurationPanel" hidden><p>已独立进入 X 时长记录，不会再增加次数。</p><div class="v7-duration-options"><button type="button" data-intimate-duration="vaginal" data-duration="10">10 分钟</button><button type="button" data-intimate-duration="vaginal" data-duration="20">20 分钟</button><button type="button" data-intimate-duration="vaginal" data-duration="30">30 分钟</button></div><button class="v7-duration-skip" type="button" data-close-duration="vaginal">先不记录时长</button></div></article>
+ </div>
+ <div class="tracker-actions"><button class="btn" id="undoIntimateBtn" type="button">↶ 撤销最近一次次数</button><button class="btn" id="undoIntimateDurationBtn" type="button">↶ 撤销最近一次时长</button></div>
+ <section class="v7-duration-stats"><h3 id="v7IntimateStatsTitle">亲密时长统计</h3><div class="v7-duration-stat-grid"><div><span>本日 K 时长</span><strong id="v7KDurationToday">0 分</strong></div><div><span>本日 X 时长</span><strong id="v7XDurationToday">0 分</strong></div><div><span>本日总时长</span><strong id="v7AllDurationToday">0 分</strong></div></div><div class="v7-duration-stat-grid" style="margin-top:8px"><div><span>历史 K 时长</span><strong id="v7KDurationAll">0 分</strong></div><div><span>历史 X 时长</span><strong id="v7XDurationAll">0 分</strong></div><div><span>历史总时长</span><strong id="v7AllDurationAll">0 分</strong></div></div><div class="v7-duration-log" id="intimateTimeList">还没有时长记录</div></section>
+ `;
+}
+// Preserve older V6 events while separating all new time records from the frequency ledger.
+function v7MigrateIntimateData(){
+ Object.entries(records).forEach(([date,d])=>{
+  if(!d||typeof d!=='object')return;
+  if(!Array.isArray(d.intimateEvents))d.intimateEvents=[];
+  if(!Array.isArray(d.intimateDurationEvents)){
+    d.intimateDurationEvents=d.intimateEvents.filter(e=>Number(e.duration)>0).map(e=>({id:`v7-migrated-${e.id||date+'-'+Math.random().toString(16).slice(2)}`,kind:e.kind||'oral',duration:Number(e.duration),time:e.time||'',at:Number(e.at)||0,legacy:true}));
+  }
+  d.intimateEvents=d.intimateEvents.map(e=>({...e,kind:e.kind||(e.type==='vaginal'?'vaginal':e.type==='oral'?'oral':e.kind),duration:Number(e.duration)||0}));
+ });
+}
+v7MigrateIntimateData();
+function v7KindName(kind){return kind==='vaginal'?'X':'K'}
+function v7FormatDuration(min){min=Math.max(0,Number(min)||0);return `${min} 分`}
+function v7RenderIntimateStats(){
+ if(!$('#intimateCount'))return;
+ const today=ensureDay();if(!Array.isArray(today.intimateEvents))today.intimateEvents=[];if(!Array.isArray(today.intimateDurationEvents))today.intimateDurationEvents=[];
+ const countK=today.intimateEvents.filter(e=>e.kind==='oral'||e.kind==='K').length,countX=today.intimateEvents.filter(e=>e.kind==='vaginal'||e.kind==='X').length;
+ $('#intimateCount').textContent=today.intimateEvents.length;$('#v7KCount').textContent=countK;$('#v7XCount').textContent=countX;$('#v7KRecent').textContent=countK;$('#v7XRecent').textContent=countX;
+ const dayDur=today.intimateDurationEvents;const mins=(arr,k)=>arr.filter(e=>!k||e.kind===k||(k==='oral'&&e.kind==='K')||(k==='vaginal'&&e.kind==='X')).reduce((s,e)=>s+(Number(e.duration)||0),0);
+ const allDur=Object.values(records).flatMap(d=>Array.isArray(d?.intimateDurationEvents)?d.intimateDurationEvents:[]);
+ $('#v7KDurationToday').textContent=v7FormatDuration(mins(dayDur,'oral'));$('#v7XDurationToday').textContent=v7FormatDuration(mins(dayDur,'vaginal'));$('#v7AllDurationToday').textContent=v7FormatDuration(mins(dayDur));
+ $('#v7KDurationAll').textContent=v7FormatDuration(mins(allDur,'oral'));$('#v7XDurationAll').textContent=v7FormatDuration(mins(allDur,'vaginal'));$('#v7AllDurationAll').textContent=v7FormatDuration(mins(allDur));
+ const host=$('#intimateTimeList');if(host){host.innerHTML='';const ev=dayDur.slice().sort((a,b)=>(b.at||0)-(a.at||0)).slice(0,8);if(!ev.length){host.textContent='本日还没有独立时长记录'}else ev.forEach(e=>{const chip=document.createElement('span');chip.className='v7-duration-chip';chip.textContent=`${v7KindName(e.kind)} · ${Number(e.duration)||0} 分钟 · ${e.time||'已记录'}`;host.append(chip)})}
+}
+function v7SaveRecordChange(message){persist();renderToday();updateModeControls();v7ScheduleAutosync();if(message)toast(message)}
+$$('[data-intimate-count]').forEach(btn=>btn.addEventListener('click',()=>{
+ const kind=btn.dataset.intimateCount,d=ensureDay();if(!Array.isArray(d.intimateEvents))d.intimateEvents=[];
+ d.intimateEvents.push({id:`int-count-${Date.now()}-${Math.random().toString(16).slice(2,7)}`,kind,count:1,time:nowTime(),at:Date.now(),duration:0,v7:true});
+ const panel=$(kind==='oral'?'#v7KDurationPanel':'#v7XDurationPanel');if(panel)panel.hidden=false;
+ v7SaveRecordChange(`已记录 1 次 ${v7KindName(kind)}，可选择是否单独记录时长`);
+}));
+$$('[data-open-duration]').forEach(btn=>btn.addEventListener('click',()=>{const kind=btn.dataset.openDuration;const panel=$(kind==='oral'?'#v7KDurationPanel':'#v7XDurationPanel');if(panel)panel.hidden=!panel.hidden}));
+$$('[data-close-duration]').forEach(btn=>btn.addEventListener('click',()=>{const panel=$(btn.dataset.closeDuration==='oral'?'#v7KDurationPanel':'#v7XDurationPanel');if(panel)panel.hidden=true}));
+$$('[data-intimate-duration]').forEach(btn=>btn.addEventListener('click',()=>{
+ const kind=btn.dataset.intimateDuration,duration=Number(btn.dataset.duration),d=ensureDay();if(!Array.isArray(d.intimateDurationEvents))d.intimateDurationEvents=[];
+ d.intimateDurationEvents.push({id:`int-duration-${Date.now()}-${Math.random().toString(16).slice(2,7)}`,kind,duration,time:nowTime(),at:Date.now()});
+ const panel=$(kind==='oral'?'#v7KDurationPanel':'#v7XDurationPanel');if(panel)panel.hidden=true;
+ v7SaveRecordChange(`已单独记录 ${v7KindName(kind)} 时长 ${duration} 分钟，没有增加次数`);
+}));
+$('#undoIntimateBtn')?.addEventListener('click',()=>{const d=ensureDay(),a=d.intimateEvents||[];if(!a.length){toast('没有可撤销的次数');return}a.sort((x,y)=>(x.at||0)-(y.at||0));a.pop();v7SaveRecordChange('已撤销最近一次次数记录')});
+$('#undoIntimateDurationBtn')?.addEventListener('click',()=>{const d=ensureDay(),a=d.intimateDurationEvents||[];if(!a.length){toast('没有可撤销的时长');return}a.sort((x,y)=>(x.at||0)-(y.at||0));a.pop();v7SaveRecordChange('已撤销最近一次时长记录')});
+const v7OriginalUpdateModeControls=updateModeControls;
+updateModeControls=function(){v7OriginalUpdateModeControls();v7RenderIntimateStats();applyV7ModuleNames();const color=stockingFor(currentDate);if($('#stockingTitle'))$('#stockingTitle').textContent='今日袜子颜色 · '+color.name};
+
+// Redesign the stocking palette: six tones, including purple and brown.
+function v7RenderStockingPalette(){const sw=$('.stocking-swatches');if(!sw)return;sw.innerHTML='';stockColors.forEach(c=>{const i=document.createElement('i');i.style.background=c.value;i.title=c.name;sw.append(i)});const scene=$('#restScene');if(scene){scene.style.setProperty('--stock-tone',stockingFor(currentDate).value)}}
+
+// Settings view navigation and module labels.
+$('#v7OpenSettings').addEventListener('click',()=>switchView('settings'));
+$('#v7BackHome').addEventListener('click',()=>switchView('today'));
+function v7SetAutoSync(on){$('#v7AutoSync').checked=!!on;v7SessionSet('qb_v7_auto_sync',on?'1':'0')}
+$('#v7AutoSync').checked=false;v7SessionSet('qb_v7_auto_sync','0');
+if($('#v7TokenInput'))$('#v7TokenInput').value=v7SessionGet(V7_TOKEN_SESSION);
+if(v7LastKnownRevision)v7SetStatus('已记住上次云端版本。为保护加密口令，本次打开不会自动上传；重新输入加密口令后，可手动同步或重新开启自动同步。','warning');
+$('#v7AutoSync').addEventListener('change',()=>{
+ if($('#v7AutoSync').checked&&!v7LastKnownRevision){v7SetAutoSync(false);v7SetStatus('请先手动同步到云端，或从云端恢复并建立版本基准，再开启自动同步。','warning');return}
+ if($('#v7AutoSync').checked&&!$('#v7Passphrase').value){v7SetAutoSync(false);v7SetStatus('请先输入本次会话的加密口令，再开启自动同步。口令不会被保存。','warning');return}
+ v7SetAutoSync($('#v7AutoSync').checked);v7SetStatus($('#v7AutoSync').checked?'自动同步已开启。本地变更后会尝试加密上传。':'自动同步已关闭。','success');
+});
+$('#v7ResetNames').addEventListener('click',()=>{if(!confirm('把所有页面模块名称恢复为默认？'))return;v7ModuleNames={...v7ModuleDefaults};Object.keys(defaultUIPrefs).forEach(k=>{uiPrefs[k].label=v7CardLabels[k]});v7PersistAllPrefs();v7RenderNameSettings();renderComponentSettings();applyUIPrefs();applyV7ModuleNames();v7ScheduleAutosync();toast('名称已恢复默认')});
+$('#v7ResetComponents').addEventListener('click',()=>{if(!confirm('恢复首页卡片的显示、图标、大小与默认文字？'))return;uiPrefs=JSON.parse(JSON.stringify(defaultUIPrefs));Object.keys(defaultUIPrefs).forEach(k=>uiPrefs[k].label=v7CardLabels[k]);persistUIPrefs();renderComponentSettings();v7RenderNameSettings();applyUIPrefs();v7ScheduleAutosync();toast('卡片设置已恢复默认')});
+
+// One-click full export/import replaces the old partial backup flow.
+function v7Payload(includeMeta=true){const p={app:'𝕏 · 个人操作台 V7',version:7,records,todos,finance:financeData,uiPrefs,moduleNames:v7ModuleNames};if(includeMeta){p.exportedAt=new Date().toISOString();p.dataSchema='quietly-better-v7'}return p}
+function v7Fingerprint(payload=v7Payload(false)){return JSON.stringify({version:payload.version||7,records:payload.records||{},todos:payload.todos||[],finance:payload.finance||{},uiPrefs:payload.uiPrefs||{},moduleNames:payload.moduleNames||{}})}
+function v7ExportAll(){const p=v7Payload(true);download(`Quietly_Better_V7_完整备份_${todayISO()}.json`,JSON.stringify(p,null,2),'application/json;charset=utf-8');toast('已导出完整 JSON 备份')}
+$('#v7ExportAll').addEventListener('click',v7ExportAll);
+function v7ApplyPayload(obj){
+ const rec=obj&&obj.records&&typeof obj.records==='object'?obj.records:obj;
+ if(!rec||typeof rec!=='object'||Array.isArray(rec))throw new Error('备份格式不正确');
+ v7SuppressAutosync=true;
+ try{
+  records=normalizeRecords(rec);
+  if(obj&&Array.isArray(obj.todos))todos=obj.todos.filter(t=>t&&t.id&&t.title).map(t=>({...t}));else todos=[];
+  if(obj&&obj.finance&&typeof obj.finance==='object')financeData=normalizeFinance(obj.finance);else financeData=defaultFinance();
+  const newPrefs=obj&&obj.uiPrefs&&typeof obj.uiPrefs==='object'?obj.uiPrefs:{};
+  uiPrefs={};Object.keys(defaultUIPrefs).forEach(k=>uiPrefs[k]={...defaultUIPrefs[k],...(newPrefs[k]||{}),label:(newPrefs[k]&&newPrefs[k].label)||v7CardLabels[k]});
+  v7ModuleNames={...v7ModuleDefaults,...(obj&&obj.moduleNames&&typeof obj.moduleNames==='object'?obj.moduleNames:{})};
+  v7MigrateIntimateData();
+  setStored(DATA_KEY,JSON.stringify(records));setStored(TODO_KEY,JSON.stringify(todos));setStored(FINANCE_KEY,JSON.stringify(financeData));setStored(UI_PREFS_KEY,JSON.stringify(uiPrefs));setStored(V7_MODULE_KEY,JSON.stringify(v7ModuleNames));
+  v7RenderNameSettings();renderComponentSettings();applyUIPrefs();applyV7ModuleNames();renderToday();renderFinance();renderTasks();renderInsights();renderJournal();updateModeControls();
+ }finally{v7SuppressAutosync=false}
+}
+async function v7HandleImportFile(file){if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj||typeof obj!=='object')throw new Error('format');if(!confirm('完整恢复会替换本机已有的日常记录、待办、财务流水、组件名称和布局。建议先导出当前备份。继续恢复？'))return;v7ApplyPayload(obj);v7SetAutoSync(false);v7SessionRemove(V7_LAST_FINGERPRINT_SESSION);v7SetStatus('本机备份已恢复。为了避免误覆盖云端，自动同步暂时关闭；确认数据无误后再手动同步。','warning');toast('完整备份恢复成功')}catch(e){alert('导入失败：请选择本应用导出的完整 JSON 备份。\n'+(e&&e.message?e.message:''))}finally{$('#v7ImportFile').value='';$('#importFile').value=''}}
+$('#v7ImportAll').addEventListener('click',()=>$('#v7ImportFile').click());
+$('#v7ImportFile').addEventListener('change',e=>v7HandleImportFile(e.target.files&&e.target.files[0]));
+// intercept the legacy top-bar importer so it follows the same one-step full-restore semantics.
+$('#importFile').addEventListener('change',e=>{e.stopImmediatePropagation();v7HandleImportFile(e.target.files&&e.target.files[0])},true);
+// Replace existing JSON backup buttons (which were bound to the V6 partial exporter) with V7 full backups.
+function v7ReplaceButton(id,handler,label){const old=$(id);if(!old)return;const clone=old.cloneNode(true);if(label)clone.textContent=label;old.replaceWith(clone);clone.addEventListener('click',handler)}
+v7ReplaceButton('#exportJson',v7ExportAll,'备份 JSON');v7ReplaceButton('#insightExportJson',v7ExportAll,'备份 JSON');
+$('#v7ResetData').addEventListener('click',()=>{
+ v7ExportAll();if(!confirm('已触发完整 JSON 备份。确认清空本机的日常记录、待办和财务流水？名称和布局保留；云端数据不会被删除。'))return;
+ v7SuppressAutosync=true;try{records={};todos=[];financeData=defaultFinance();setStored(DATA_KEY,'{}');setStored(TODO_KEY,'[]');setStored(FINANCE_KEY,JSON.stringify(financeData));renderToday();renderFinance();renderTasks();renderInsights();renderJournal();updateModeControls()}finally{v7SuppressAutosync=false}
+ v7SetAutoSync(false);v7SessionRemove(V7_LAST_FINGERPRINT_SESSION);v7SetStatus('本机记录已重置，云端没有被删除。自动同步已暂停。','warning');toast('本机记录已重置');
+});
+
+// Crypto helpers: PBKDF2 derives an AES-256-GCM key locally. Only the envelope is sent to GitHub.
+const V7_PBKDF2_ITERATIONS=310000;
+function v7B64(bytes){let s='';new Uint8Array(bytes).forEach(b=>s+=String.fromCharCode(b));return btoa(s)}
+function v7UnB64(text){const s=atob(text);const a=new Uint8Array(s.length);for(let i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return a}
+async function v7CryptoKey(passphrase,salt){if(!window.crypto||!crypto.subtle)throw new Error('当前打开方式不支持 Web Crypto。请使用 HTTPS 网页，或在本机通过 localhost 打开。');const material=await crypto.subtle.importKey('raw',new TextEncoder().encode(passphrase),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:V7_PBKDF2_ITERATIONS,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function v7EncryptPayload(payload,passphrase){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),key=await v7CryptoKey(passphrase,salt);const plain=new TextEncoder().encode(JSON.stringify(payload));const cipher=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,plain);return JSON.stringify({format:'quietly-better-v7-encrypted',cipher:'AES-256-GCM',kdf:'PBKDF2-SHA-256',iterations:V7_PBKDF2_ITERATIONS,salt:v7B64(salt),iv:v7B64(iv),ciphertext:v7B64(cipher),savedAt:new Date().toISOString()})}
+async function v7DecryptEnvelope(text,passphrase){let envelope;try{envelope=JSON.parse(text)}catch(e){throw new Error('Gist 内容不是 V7 加密数据；为避免把旧内容误当备份，已停止恢复。')};if(!envelope||envelope.format!=='quietly-better-v7-encrypted')throw new Error('云端文件不是 V7 加密格式。若是首次连接空 Gist，请使用“加密并同步到云端”。');const salt=v7UnB64(envelope.salt),iv=v7UnB64(envelope.iv),cipher=v7UnB64(envelope.ciphertext),key=await v7CryptoKey(passphrase,salt);try{const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,cipher);return JSON.parse(new TextDecoder().decode(plain))}catch(e){throw new Error('解密失败：请检查加密口令是否与上传时完全一致。')}}
+function v7GetToken(){return ($('#v7TokenInput').value||v7SessionGet(V7_TOKEN_SESSION)||'').trim()}
+function v7RememberToken(){const token=($('#v7TokenInput').value||'').trim();if(token){v7SessionSet(V7_TOKEN_SESSION,token)}else if(!v7SessionGet(V7_TOKEN_SESSION)){throw new Error('请先在页面内粘贴 GitHub Token。')}return v7SessionGet(V7_TOKEN_SESSION)||token}
+function v7RequirePassphrase(){const p=$('#v7Passphrase').value;if(!p||p.length<8)throw new Error('请输入至少 8 位的独立加密口令；跨设备需要使用同一个口令。');return p}
+async function v7FetchGist(){const token=v7RememberToken();const url=`https://api.github.com/gists/${V7_GIST_ID}?_=${Date.now()}`;const resp=await fetch(url,{method:'GET',cache:'no-store',headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28'}});if(!resp.ok){let detail='';try{detail=(await resp.json()).message||''}catch(e){};if(resp.status===401)throw new Error('GitHub Token 无效或已过期（401）。');if(resp.status===403)throw new Error('GitHub 拒绝访问（403）：请检查 Token 权限是否包含 Gists 读取。');if(resp.status===404)throw new Error('未找到 Gist（404）：请确认此 Token 所属账户能访问该 Gist。');throw new Error(`读取 Gist 失败（${resp.status}）${detail?': '+detail:''}`)}const gist=await resp.json();const f=gist.files&&gist.files[V7_GIST_FILE];if(f&&f.truncated)throw new Error('Gist 文件返回了截断内容，无法安全恢复。请先缩小备份或拆分大型附件。');return {gist,file:f||null,content:f&&typeof f.content==='string'?f.content:'',revision:(gist.history&&gist.history[0]&&gist.history[0].version)||gist.updated_at||'',updatedAt:gist.updated_at||''}}
+function v7CloudIsEmpty(remote){const t=String(remote.content||'').trim();if(!remote.file||!t)return true;try{const x=JSON.parse(t);return x&&typeof x==='object'&&x.format!=='quietly-better-v7-encrypted'&&Object.keys(x).length===0}catch(e){return false}}
+function v7LocalHasData(){return Object.keys(records).length>0||todos.length>0||(financeData.transactions||[]).length>0||Number(financeData.openingBalance)!==0||financeData.monthlyBudget!==null}
+异步 函数 v7PatchGist(encryptedContent){
+ const token=v7RememberToken();如果(new TextEncoder().encode(encryptedContent).length>950000)throw new Error('加密后的数据接近 Gist 单文件大小限制（约 1 MB）。请先从本地备份中移除或拆分较大的附件后再同步。');
+ const resp=await fetch(`https://api.github.com/gists/${V7_GIST_ID}`,{method:'PATCH',headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({description:'Quietly Better V7 encrypted personal data',files:{[V7_GIST_FILE]:{content:encryptedContent}}})});
+ 如果(!resp.ok){let detail='';尝试{detail=(await resp.json()).message||''}catch(e){};如果(resp.status===401)throw new Error('Token 无效或已过期（401）。');如果(resp.status===403)throw new Error('没有 Gist 写权限（403）。请确认 fine-grained token 对 Gists 具有 Read and write 权限。');如果(resp.status===404)throw new Error('Gist 未找到（404），检查 Token 与 Gist 所属账户。');throw new Error(`上传失败（${resp.status}）${detail?': '+detail:''}`)}
+ const data=await resp.json();const rev=(data.history&&data.history[0]&&data.history[0].version)||data.updated_at||'';返回 {revision:rev,updatedAt:data.updated_at||''};
+}
+函数 v7RememberBaseline(revision,payload){如果(revision){v7LastKnownRevision=revision;v7SessionSet(V7_LAST_REV_SESSION,revision)}const fp=v7Fingerprint(payload);v7LastSyncedFingerprint=fp;v7SessionSet(V7_LAST_FINGERPRINT_SESSION,fp)}
+异步 函数 v7TestConnection(){尝试{v7SetStatus('正在读取指定的 Gist…');const remote=await v7FetchGist();const file=remote.file?remote.file.filename:V7_GIST_FILE;const content=String(remote.content||'').trim();const empty=v7CloudIsEmpty(remote);v7SetStatus(`连接成功：${file}。${empty?'当前云端是空对象，可以进行首次加密上传。':'已找到云端内容；恢复时需要正确的加密口令。'} 读取连接已验证，写入权限会在首次上传时验证。`,'success');返回 remote}catch(e){v7SetStatus(e.message||'连接失败。','error');返回 null}}
+$('#v7TestConnection').addEventListener('click',v7TestConnection);
+异步 函数 v7PushToCloud({automatic=false,force=false}={}){
+ 如果(v7同步繁忙)返回;let 密码短语,remote;
+ 尝试{
+  密码短语=v7RequirePassphrase();v7RememberToken();v7同步繁忙=true;v7SetStatus(automatic?'检测云端版本并准备自动同步…':'正在检查云端版本…');
+  remote=await v7FetchGist();const empty=v7CloudIsEmpty(remote);const localPayload=v7Payload(true);const localFP=v7Fingerprint(localPayload);
+  如果(empty){如果(automatic){v7SetStatus('云端还是空的。请点击“加密并同步到云端”完成首次初始化。','warning');返回}如果(!confirm('Gist 当前是空的。将把本机完整数据在浏览器中加密后上传到 data.json。继续？')){v7SetStatus('首次上传已取消。');返回}}
+  else 如果(!force){
+   如果(!v7LastKnownRevision){v7SetStatus('云端已有数据，但本设备尚未建立版本基准。为避免误覆盖，请先点击“从云端恢复”；若确定要覆盖，才使用“强制覆盖云端”。','warning');返回}
+   如果(remote.revision!==v7LastKnownRevision){v7SetAutoSync(false);v7SetStatus('检测到云端版本已改变，已暂停自动同步。请先从云端恢复，或确认后使用“强制覆盖云端”。','warning');返回}
+   如果(localFP===v7LastSyncedFingerprint){v7SetStatus('本地和云端都没有新变更，无需上传。','success');返回}
+  }else 如果(!confirm('强制覆盖将以当前本机的完整数据替换 Gist 文件内容。旧版本可能仍留在 Gist 历史中。确认继续？')){v7SetStatus('已取消强制覆盖。');返回}
+  const envelope=await v7EncryptPayload(localPayload,密码短语);v7SetStatus('正在上传加密数据…');let result=await v7PatchGist(envelope);如果(!result.revision){const after=await v7FetchGist();result=after}
+  v7RememberBaseline(result.revision||remote.revision,localPayload);v7SetAutoSync(true);v7SetStatus(`同步成功。完整数据已加密并写入 ${V7_GIST_FILE}。云端版本：${(result.revision||'').slice(0,10)||'已更新'}；自动同步已开启。`,'success');toast('V7 已安全同步到 Gist');
+ }catch(e){v7SetStatus(e.message||'同步失败。','error');如果(automatic&&String(e.message||'').includes('版本已改变'))v7SetAutoSync(false)}finally{v7同步繁忙=false}
+}
+$('#v7PushNow').addEventListener('click',()=>v7PushToCloud());
+ function v7从云端拉取(){如果(v7同步繁忙)返回;尝试{常量 密码短语=v7RequirePassphrase();v7RememberToken();v7同步繁忙=true;v7SetStatus('正在读取云端加密备份…');常量 remote=await v7FetchGist();如果(v7CloudIsEmpty(remote)){v7SetStatus('云端 data.json 还是空的，当前没有可恢复的数据。','warning');返回}const payload=await v7DecryptEnvelope(remote.content,密码短语);如果(!confirm('即将用云端备份完整替换本机记录、待办、财务流水和设置。建议先一键导出本机备份。继续恢复？')){v7SetStatus('恢复已取消。');返回}v7ApplyPayload(payload);v7RememberBaseline(remote.revision,payload);(true);v7SetStatus(`恢复成功。已从云端版本 ${(remote.revision||'').slice(0,10)} 恢复数据；自动同步已开启。`,'success');toast('云端数据已恢复')}catch(e){v7SetStatus(e.message||'云端恢复失败。','error')}finally{v7同步繁忙=false}}
+$('#v7PullNow').addEventListener('click',v7从云端拉取);
+// 显式破坏性覆盖仅在远程修订版本与本地不一致、阻止常规同步时才会显示。
+常量 v7SyncActions=$('.v7-sync-actions');如果(v7SyncActions){常量 force=document.createElement('button');force.type='button';force.id='v7ForcePush';force.className='btn danger';force.textContent='强制覆盖云端';force.title='仅在确认以本机版本替换云端时使用';force.style.display='none';v7SyncActions.append(force);force.addEventListener('click',()=>v7PushToCloud({force:true}));}
+
+函数 v7ScheduleAutosync(){
+ 如果(v7SuppressAutosync||!$('#v7AutoSync')?.checked||!v7LastKnownRevision)返回;
+ clearTimeout(v7AutoSyncTimer);v7AutoSyncTimer=setTimeout(()=>{
+   如果(!$('#v7AutoSync')?.checked)返回;
+   v7PushToCloud({automatic:true});
+ },2600);
+}
+// 持久化封装器：所有本地更改立即生效；在线同步经过防抖处理且需手动启用。
+常量 v7BasePersist=persist;persist=函数(){v7BasePersist();v7ScheduleAutosync()};
+常量 v7BasePersistTodos=persistTodos;persistTodos=function(){v7BasePersistTodos();v7ScheduleAutosync()};
+常量 v7BasePersistFinance=persistFinance;persistFinance=function(){v7BasePersistFinance();v7ScheduleAutosync()};
+常量 v7BasePersistUIPrefs=persistUIPrefs;persistUIPrefs=function(){v7BasePersistUIPrefs();v7ScheduleAutosync()};
+
+// 恢复 V7 的偏好设置并迁移私有追踪器，然后重新渲染一次。
+对象.键(默认UI首选项).遍历(k=>{uiPrefs[k]={...默认UI首选项[k],...(uiPrefs[k]||{}),标签:(uiPrefs[k]&&uiPrefs[k].标签)||v7卡片标签[k]}});
+v7RenderNameSettings();renderComponentSettings();applyUIPrefs();applyV7ModuleNames();v7RenderStockingPalette();v7RenderIntimateStats();
+// 仅在首次发生冲突后才允许强制覆盖；常规同步绝不会静默地覆盖远程数据。
+常量 v7OriginalSetStatus=v7SetStatus;
+v7SetStatus=函数(message,kind=''){v7OriginalSetStatus(message,kind);常量 force=$('#v7ForcePush');如果(force)force.style.display=(kind==='warning'&&/版本|覆盖|云端已有数据/.test(message))?'inline-flex':'none'};
+常量 v7OriginalSwitchView=switchView;
+switchView=函数(view){v7OriginalSwitchView(view);如果(view==='settings'){v7RenderNameSettings();renderComponentSettings();applyV7ModuleNames()}如果(视图==='rest'){v7RenderStockingPalette();v7RenderIntimateStats()} };
+// 在现有 V6 首次绘制完成后，运行初始的 V7 包装器。
+renderToday();renderFinance();applyUIPrefs();applyV7ModuleNames();v7RenderStockingPalette();updateModeControls();
+
 })();
 </script>
-</body></html>
+</主体></html>
