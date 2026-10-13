@@ -759,60 +759,60 @@ function v7RequirePassphrase(){const p=$('#v7Passphrase').value;if(!p||p.length<
 async function v7FetchGist(){const token=v7RememberToken();const url=`https://api.github.com/gists/${V7_GIST_ID}?_=${Date.now()}`;const resp=await fetch(url,{method:'GET',cache:'no-store',headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28'}});if(!resp.ok){let detail='';try{detail=(await resp.json()).message||''}catch(e){};if(resp.status===401)throw new Error('GitHub Token 无效或已过期（401）。');if(resp.status===403)throw new Error('GitHub 拒绝访问（403）：请检查 Token 权限是否包含 Gists 读取。');if(resp.status===404)throw new Error('未找到 Gist（404）：请确认此 Token 所属账户能访问该 Gist。');throw new Error(`读取 Gist 失败（${resp.status}）${detail?': '+detail:''}`)}const gist=await resp.json();const f=gist.files&&gist.files[V7_GIST_FILE];if(f&&f.truncated)throw new Error('Gist 文件返回了截断内容，无法安全恢复。请先缩小备份或拆分大型附件。');return {gist,file:f||null,content:f&&typeof f.content==='string'?f.content:'',revision:(gist.history&&gist.history[0]&&gist.history[0].version)||gist.updated_at||'',updatedAt:gist.updated_at||''}}
 function v7CloudIsEmpty(remote){const t=String(remote.content||'').trim();if(!remote.file||!t)return true;try{const x=JSON.parse(t);return x&&typeof x==='object'&&x.format!=='quietly-better-v7-encrypted'&&Object.keys(x).length===0}catch(e){return false}}
 function v7LocalHasData(){return Object.keys(records).length>0||todos.length>0||(financeData.transactions||[]).length>0||Number(financeData.openingBalance)!==0||financeData.monthlyBudget!==null}
-异步 函数 v7PatchGist(encryptedContent){
- const token=v7RememberToken();如果(new TextEncoder().encode(encryptedContent).length>950000)throw new Error('加密后的数据接近 Gist 单文件大小限制（约 1 MB）。请先从本地备份中移除或拆分较大的附件后再同步。');
+async function v7PatchGist(encryptedContent){
+ const token=v7RememberToken();if(new TextEncoder().encode(encryptedContent).length>950000)throw new Error('加密后的数据接近 Gist 单文件大小限制（约 1 MB）。请先从本地备份中移除或拆分较大的附件后再同步。');
  const resp=await fetch(`https://api.github.com/gists/${V7_GIST_ID}`,{method:'PATCH',headers:{Accept:'application/vnd.github+json',Authorization:`Bearer ${token}`,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({description:'Quietly Better V7 encrypted personal data',files:{[V7_GIST_FILE]:{content:encryptedContent}}})});
- 如果(!resp.ok){let detail='';尝试{detail=(await resp.json()).message||''}catch(e){};如果(resp.status===401)throw new Error('Token 无效或已过期（401）。');如果(resp.status===403)throw new Error('没有 Gist 写权限（403）。请确认 fine-grained token 对 Gists 具有 Read and write 权限。');如果(resp.status===404)throw new Error('Gist 未找到（404），检查 Token 与 Gist 所属账户。');throw new Error(`上传失败（${resp.status}）${detail?': '+detail:''}`)}
- const data=await resp.json();const rev=(data.history&&data.history[0]&&data.history[0].version)||data.updated_at||'';返回 {revision:rev,updatedAt:data.updated_at||''};
+ if(!resp.ok){let detail='';try{detail=(await resp.json()).message||''}catch(e){};if(resp.status===401)throw new Error('Token 无效或已过期（401）。');if(resp.status===403)throw new Error('没有 Gist 写权限（403）。请确认 fine-grained token 对 Gists 具有 Read and write 权限。');if(resp.status===404)throw new Error('Gist 未找到（404），检查 Token 与 Gist 所属账户。');throw new Error(`上传失败（${resp.status}）${detail?': '+detail:''}`)}
+ const data=await resp.json();const rev=(data.history&&data.history[0]&&data.history[0].version)||data.updated_at||'';return {revision:rev,updatedAt:data.updated_at||''};
 }
-函数 v7RememberBaseline(revision,payload){如果(revision){v7LastKnownRevision=revision;v7SessionSet(V7_LAST_REV_SESSION,revision)}const fp=v7Fingerprint(payload);v7LastSyncedFingerprint=fp;v7SessionSet(V7_LAST_FINGERPRINT_SESSION,fp)}
-异步 函数 v7TestConnection(){尝试{v7SetStatus('正在读取指定的 Gist…');const remote=await v7FetchGist();const file=remote.file?remote.file.filename:V7_GIST_FILE;const content=String(remote.content||'').trim();const empty=v7CloudIsEmpty(remote);v7SetStatus(`连接成功：${file}。${empty?'当前云端是空对象，可以进行首次加密上传。':'已找到云端内容；恢复时需要正确的加密口令。'} 读取连接已验证，写入权限会在首次上传时验证。`,'success');返回 remote}catch(e){v7SetStatus(e.message||'连接失败。','error');返回 null}}
+function v7RememberBaseline(revision,payload){if(revision){v7LastKnownRevision=revision;v7SessionSet(V7_LAST_REV_SESSION,revision)}const fp=v7Fingerprint(payload);v7LastSyncedFingerprint=fp;v7SessionSet(V7_LAST_FINGERPRINT_SESSION,fp)}
+async function v7TestConnection(){try{v7SetStatus('正在读取指定的 Gist…');const remote=await v7FetchGist();const file=remote.file?remote.file.filename:V7_GIST_FILE;const content=String(remote.content||'').trim();const empty=v7CloudIsEmpty(remote);v7SetStatus(`连接成功：${file}。${empty?'当前云端是空对象，可以进行首次加密上传。':'已找到云端内容；恢复时需要正确的加密口令。'} 读取连接已验证，写入权限会在首次上传时验证。`,'success');return remote}catch(e){v7SetStatus(e.message||'连接失败。','error');return null}}
 $('#v7TestConnection').addEventListener('click',v7TestConnection);
-异步 函数 v7PushToCloud({automatic=false,force=false}={}){
- 如果(v7同步繁忙)返回;let 密码短语,remote;
- 尝试{
-  密码短语=v7RequirePassphrase();v7RememberToken();v7同步繁忙=true;v7SetStatus(automatic?'检测云端版本并准备自动同步…':'正在检查云端版本…');
+async function v7PushToCloud({automatic=false,force=false}={}){
+ if(v7SyncBusy)return;let passphrase,remote;
+ try{
+  passphrase=v7RequirePassphrase();v7RememberToken();v7SyncBusy=true;v7SetStatus(automatic?'检测云端版本并准备自动同步…':'正在检查云端版本…');
   remote=await v7FetchGist();const empty=v7CloudIsEmpty(remote);const localPayload=v7Payload(true);const localFP=v7Fingerprint(localPayload);
-  如果(empty){如果(automatic){v7SetStatus('云端还是空的。请点击“加密并同步到云端”完成首次初始化。','warning');返回}如果(!confirm('Gist 当前是空的。将把本机完整数据在浏览器中加密后上传到 data.json。继续？')){v7SetStatus('首次上传已取消。');返回}}
-  else 如果(!force){
-   如果(!v7LastKnownRevision){v7SetStatus('云端已有数据，但本设备尚未建立版本基准。为避免误覆盖，请先点击“从云端恢复”；若确定要覆盖，才使用“强制覆盖云端”。','warning');返回}
-   如果(remote.revision!==v7LastKnownRevision){v7SetAutoSync(false);v7SetStatus('检测到云端版本已改变，已暂停自动同步。请先从云端恢复，或确认后使用“强制覆盖云端”。','warning');返回}
-   如果(localFP===v7LastSyncedFingerprint){v7SetStatus('本地和云端都没有新变更，无需上传。','success');返回}
-  }else 如果(!confirm('强制覆盖将以当前本机的完整数据替换 Gist 文件内容。旧版本可能仍留在 Gist 历史中。确认继续？')){v7SetStatus('已取消强制覆盖。');返回}
-  const envelope=await v7EncryptPayload(localPayload,密码短语);v7SetStatus('正在上传加密数据…');let result=await v7PatchGist(envelope);如果(!result.revision){const after=await v7FetchGist();result=after}
+  if(empty){if(automatic){v7SetStatus('云端还是空的。请点击“加密并同步到云端”完成首次初始化。','warning');return}if(!confirm('Gist 当前是空的。将把本机完整数据在浏览器中加密后上传到 data.json。继续？')){v7SetStatus('首次上传已取消。');return}}
+  else if(!force){
+   if(!v7LastKnownRevision){v7SetStatus('云端已有数据，但本设备尚未建立版本基准。为避免误覆盖，请先点击“从云端恢复”；若确定要覆盖，才使用“强制覆盖云端”。','warning');return}
+   if(remote.revision!==v7LastKnownRevision){v7SetAutoSync(false);v7SetStatus('检测到云端版本已改变，已暂停自动同步。请先从云端恢复，或确认后使用“强制覆盖云端”。','warning');return}
+   if(localFP===v7LastSyncedFingerprint){v7SetStatus('本地和云端都没有新变更，无需上传。','success');return}
+  }else if(!confirm('强制覆盖将以当前本机的完整数据替换 Gist 文件内容。旧版本可能仍留在 Gist 历史中。确认继续？')){v7SetStatus('已取消强制覆盖。');return}
+  const envelope=await v7EncryptPayload(localPayload,passphrase);v7SetStatus('正在上传加密数据…');let result=await v7PatchGist(envelope);if(!result.revision){const after=await v7FetchGist();result=after}
   v7RememberBaseline(result.revision||remote.revision,localPayload);v7SetAutoSync(true);v7SetStatus(`同步成功。完整数据已加密并写入 ${V7_GIST_FILE}。云端版本：${(result.revision||'').slice(0,10)||'已更新'}；自动同步已开启。`,'success');toast('V7 已安全同步到 Gist');
- }catch(e){v7SetStatus(e.message||'同步失败。','error');如果(automatic&&String(e.message||'').includes('版本已改变'))v7SetAutoSync(false)}finally{v7同步繁忙=false}
+ }catch(e){v7SetStatus(e.message||'同步失败。','error');if(automatic&&String(e.message||'').includes('版本已改变'))v7SetAutoSync(false)}finally{v7SyncBusy=false}
 }
 $('#v7PushNow').addEventListener('click',()=>v7PushToCloud());
- function v7从云端拉取(){如果(v7同步繁忙)返回;尝试{常量 密码短语=v7RequirePassphrase();v7RememberToken();v7同步繁忙=true;v7SetStatus('正在读取云端加密备份…');常量 remote=await v7FetchGist();如果(v7CloudIsEmpty(remote)){v7SetStatus('云端 data.json 还是空的，当前没有可恢复的数据。','warning');返回}const payload=await v7DecryptEnvelope(remote.content,密码短语);如果(!confirm('即将用云端备份完整替换本机记录、待办、财务流水和设置。建议先一键导出本机备份。继续恢复？')){v7SetStatus('恢复已取消。');返回}v7ApplyPayload(payload);v7RememberBaseline(remote.revision,payload);(true);v7SetStatus(`恢复成功。已从云端版本 ${(remote.revision||'').slice(0,10)} 恢复数据；自动同步已开启。`,'success');toast('云端数据已恢复')}catch(e){v7SetStatus(e.message||'云端恢复失败。','error')}finally{v7同步繁忙=false}}
-$('#v7PullNow').addEventListener('click',v7从云端拉取);
-// 显式破坏性覆盖仅在远程修订版本与本地不一致、阻止常规同步时才会显示。
-常量 v7SyncActions=$('.v7-sync-actions');如果(v7SyncActions){常量 force=document.createElement('button');force.type='button';force.id='v7ForcePush';force.className='btn danger';force.textContent='强制覆盖云端';force.title='仅在确认以本机版本替换云端时使用';force.style.display='none';v7SyncActions.append(force);force.addEventListener('click',()=>v7PushToCloud({force:true}));}
+async function v7PullFromCloud(){if(v7SyncBusy)return;try{const passphrase=v7RequirePassphrase();v7RememberToken();v7SyncBusy=true;v7SetStatus('正在读取云端加密备份…');const remote=await v7FetchGist();if(v7CloudIsEmpty(remote)){v7SetStatus('云端 data.json 还是空的，当前没有可恢复的数据。','warning');return}const payload=await v7DecryptEnvelope(remote.content,passphrase);if(!confirm('即将用云端备份完整替换本机记录、待办、财务流水和设置。建议先一键导出本机备份。继续恢复？')){v7SetStatus('恢复已取消。');return}v7ApplyPayload(payload);v7RememberBaseline(remote.revision,payload);v7SetAutoSync(true);v7SetStatus(`恢复成功。已从云端版本 ${(remote.revision||'').slice(0,10)} 恢复数据；自动同步已开启。`,'success');toast('云端数据已恢复')}catch(e){v7SetStatus(e.message||'云端恢复失败。','error')}finally{v7SyncBusy=false}}
+$('#v7PullNow').addEventListener('click',v7PullFromCloud);
+// 仅当远程的其他提交版本阻止常规同步时，才会显示显式的破坏性覆盖。
+const v7SyncActions=$('.v7-sync-actions');if(v7SyncActions){const force=document.createElement('button');force.type='button';force.id='v7ForcePush';force.className='btn danger';force.textContent='强制覆盖云端';force.title='仅在确认以本机版本替换云端时使用';force.style.display='none';v7SyncActions.append(force);force.addEventListener('click',()=>v7PushToCloud({force:true}));}
 
-函数 v7ScheduleAutosync(){
- 如果(v7SuppressAutosync||!$('#v7AutoSync')?.checked||!v7LastKnownRevision)返回;
+function v7ScheduleAutosync(){
+ if(v7SuppressAutosync||!$('#v7AutoSync')?.checked||!v7LastKnownRevision)return;
  clearTimeout(v7AutoSyncTimer);v7AutoSyncTimer=setTimeout(()=>{
-   如果(!$('#v7AutoSync')?.checked)返回;
+   if(!$('#v7AutoSync')?.checked)return;
    v7PushToCloud({automatic:true});
  },2600);
 }
 // 持久化封装器：所有本地更改立即生效；在线同步经过防抖处理且需手动启用。
-常量 v7BasePersist=persist;persist=函数(){v7BasePersist();v7ScheduleAutosync()};
-常量 v7BasePersistTodos=persistTodos;persistTodos=function(){v7BasePersistTodos();v7ScheduleAutosync()};
-常量 v7BasePersistFinance=persistFinance;persistFinance=function(){v7BasePersistFinance();v7ScheduleAutosync()};
-常量 v7BasePersistUIPrefs=persistUIPrefs;persistUIPrefs=function(){v7BasePersistUIPrefs();v7ScheduleAutosync()};
+const v7BasePersist=persist;persist=function(){v7BasePersist();v7ScheduleAutosync()};
+const v7BasePersistTodos=persistTodos;persistTodos=function(){v7BasePersistTodos();v7ScheduleAutosync()};
+const v7BasePersistFinance=persistFinance;persistFinance=function(){v7BasePersistFinance();v7ScheduleAutosync()};
+const v7BasePersistUIPrefs=persistUIPrefs;persistUIPrefs=function(){v7BasePersistUIPrefs();v7ScheduleAutosync()};
 
-// 恢复 V7 的偏好设置并迁移私有追踪器，然后重新渲染一次。
-对象.键(默认UI首选项).遍历(k=>{uiPrefs[k]={...默认UI首选项[k],...(uiPrefs[k]||{}),标签:(uiPrefs[k]&&uiPrefs[k].标签)||v7卡片标签[k]}});
+// Restore V7 preferences + migrate the private trackers, then re-render once.
+Object.keys(defaultUIPrefs).forEach(k=>{uiPrefs[k]={...defaultUIPrefs[k],...(uiPrefs[k]||{}),label:(uiPrefs[k]&&uiPrefs[k].label)||v7CardLabels[k]}});
 v7RenderNameSettings();renderComponentSettings();applyUIPrefs();applyV7ModuleNames();v7RenderStockingPalette();v7RenderIntimateStats();
-// 仅在首次发生冲突后才允许强制覆盖；常规同步绝不会静默地覆盖远程数据。
-常量 v7OriginalSetStatus=v7SetStatus;
-v7SetStatus=函数(message,kind=''){v7OriginalSetStatus(message,kind);常量 force=$('#v7ForcePush');如果(force)force.style.display=(kind==='warning'&&/版本|覆盖|云端已有数据/.test(message))?'inline-flex':'none'};
-常量 v7OriginalSwitchView=switchView;
-switchView=函数(view){v7OriginalSwitchView(view);如果(view==='settings'){v7RenderNameSettings();renderComponentSettings();applyV7ModuleNames()}如果(视图==='rest'){v7RenderStockingPalette();v7RenderIntimateStats()} };
-// 在现有 V6 首次绘制完成后，运行初始的 V7 包装器。
+// Expose force overwrite only after the first conflict; regular sync never silently clobbers remote data.
+const v7OriginalSetStatus=v7SetStatus;
+v7SetStatus=function(message,kind=''){v7OriginalSetStatus(message,kind);const force=$('#v7ForcePush');if(force)force.style.display=(kind==='warning'&&/版本|覆盖|云端已有数据/.test(message))?'inline-flex':'none'};
+const v7OriginalSwitchView=switchView;
+switchView=function(view){v7OriginalSwitchView(view);if(view==='settings'){v7RenderNameSettings();renderComponentSettings();applyV7ModuleNames()}if(view==='rest'){v7RenderStockingPalette();v7RenderIntimateStats()} };
+// Run initial V7 wrappers after the existing V6 first paint.
 renderToday();renderFinance();applyUIPrefs();applyV7ModuleNames();v7RenderStockingPalette();updateModeControls();
 
 })();
 </script>
-</主体></html>
+</正文></html>
